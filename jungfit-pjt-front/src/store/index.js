@@ -1,23 +1,44 @@
 import axios from 'axios'
 import Vue from 'vue'
 import Vuex from 'vuex'
+// import createPersistateState from "vuex-persistedstate";
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+    // plugins: [createPersistateState()],
     state: {
         videos: [],
+        a: [],
+        b: [],
+        c: [],
+        d: [],
+        selectedVideo: [],
     },
     getters: {},
     mutations: {
         GET_PART_LIST(state, value) {
             state.videos = value
+            state.a = [value[0], value[1], value[2]]
+            state.b = [value[3], value[4], value[5]]
+            state.c = [value[6], value[7], value[8]]
+            state.d = [value[9], value[10], value[11]]
+        },
+        GET_VREVIEW_LIST(state, value) {
+            // console.log(value)
+            state.selectedVideo = [];
+            state.videos.forEach(v => {
+                if (v.id.videoId === value) {
+                    state.selectedVideo.push(v)
+                        // console.log(state.selectedVideo)
+                }
+            });
+
         }
 
     },
     actions: {
         getPartList({ commit }, value) {
-            console.log(value)
             const YOUTUBE_KEY = process.env.VUE_APP_YOUTUBE_API_KEY;
             const API_URL = `https://www.googleapis.com/youtube/v3/search`
             const params = {
@@ -25,7 +46,7 @@ export default new Vuex.Store({
                 part: 'snippet',
                 type: 'video',
                 q: value,
-                maxResults: 10
+                maxResults: 12
             }
 
             axios({
@@ -36,7 +57,7 @@ export default new Vuex.Store({
 
             .then((res) => {
                 commit("GET_PART_LIST", res.data.items)
-                console.log(res.data.items)
+                    // console.log(res.data.items)
             })
 
             .catch((err) => {
@@ -44,6 +65,10 @@ export default new Vuex.Store({
                 console.log("에러남")
             })
         },
+        getVReviewList({ commit }, value) {
+            commit('GET_VREVIEW_LIST', value)
+
+        }
     },
     modules: {}
 })
