@@ -9,9 +9,15 @@ export default new Vuex.Store({
         videos: [],
     },
     getters: {},
-    mutations: {},
+    mutations: {
+        GET_PART_LIST(state, value) {
+            state.videos = value
+        }
+
+    },
     actions: {
         getPartList({ commit }, value) {
+            console.log(value)
             const YOUTUBE_KEY = process.env.VUE_APP_YOUTUBE_API_KEY;
             const API_URL = `https://www.googleapis.com/youtube/v3/search`
             const params = {
@@ -29,7 +35,7 @@ export default new Vuex.Store({
             })
 
             .then((res) => {
-                commit("SEARCH_YOUTUBE", res.data.items)
+                commit("GET_PART_LIST", res.data.items)
                 console.log(res.data.items)
             })
 
