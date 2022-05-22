@@ -1,5 +1,5 @@
 <template>
-  <header id="app" style="height:50px">
+  <header id="app" >
   <v-app>
     <div>
       <v-app-bar 
@@ -38,7 +38,7 @@
               <v-list-item-icon>
                 <v-icon>mdi-home</v-icon>
               </v-list-item-icon>
-              <v-list-item-title>Home</v-list-item-title>
+              <v-list-item-title >Home</v-list-item-title>
             </v-list-item>
   
             <v-list-item>
