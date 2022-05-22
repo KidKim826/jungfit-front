@@ -4,7 +4,8 @@ import HomeView from '@/views/HomeView.vue'
 import VideoView from '@/views/VideoView.vue'
 
 import VideoList from '@/components/videos/VideoList.vue'
-
+import VReviewList from '@/components/videos/VReviewList.vue'
+// import VReviewDetail from '@/components/videos/VReviewDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -20,7 +21,11 @@ const routes = [{
         children: [{
             path: "",
             name: "videoList",
-            component: VideoList,
+            component: VideoList
+        }, {
+            path: "review/:id",
+            name: "VReviewList",
+            component: VReviewList
         }]
 
     }
