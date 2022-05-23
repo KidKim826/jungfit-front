@@ -44,7 +44,7 @@ export default {
         { text: "조회수", value: "viewCnt" },
         { text: "작성일자", value: "regDate" }
       ],
-      reviews: this.$store.state.selectedReview.data
+      reviews: this.$store.state.selectedReview
     };
   },
   computed: {
@@ -55,7 +55,6 @@ export default {
     const vdoId = pathName[pathName.length - 1];
     this.$store.dispatch("getVReviewVideo", vdoId);
     this.$store.dispatch("getVReviewList", vdoId);
-    // console.log(vdoId);
   },
   methods: {
     search() {
