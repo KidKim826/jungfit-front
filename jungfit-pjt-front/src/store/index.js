@@ -46,24 +46,28 @@ export default new Vuex.Store({
             // console.log(state.p4)
         },
         GET_VREVIEW_LIST(state, value) {
+            state.selectedReview = value
+            console.log(state.selectedReview[0])
+            // console.log()
+        },
+        GET_VREVIEW_VIDEO(state, value) {
             // console.log(value)
             state.selectedVideo = [];
             state.videos.forEach(v => {
-                if (v.id.videoId === value.data.videoId) {
+                if (v.id.videoId === value) {
                     state.selectedVideo.push(v)
                         // console.log(state.selectedVideo)
                 }
-            });
+            })
             state.partVideos.forEach(v => {
-                if (v.videoId === value.data.videoId) {
+                if (v.videoId === value) {
                     state.selectedVideo.push(v)
-                        console.log(state.selectedVideo)
+                    console.log(state.selectedVideo)
+                        // console.log(state.selectedVideo)
                 }
-            });
+            })
 
-            // console.log()
-
-        }
+        },
 
     },
     actions: {
@@ -120,7 +124,6 @@ export default new Vuex.Store({
             }
             console.log(params)
             // console.log(params.videoId)
-
             const API_URL = `${REST_API}/review/video-review/` + params
             axios({
                 url: API_URL,
@@ -128,11 +131,18 @@ export default new Vuex.Store({
                 params, //그걸 같이 넘겨줘
             }).then((res) => {
                 console.log(res)
-                commit('GET_VREVIEW_LIST', res.data)
+                if(res.data)
+                    commit('GET_VREVIEW_LIST', res.data)
             }).catch((err) => {
                 console.log(err)
             })
+        },
+        getVReviewVideo({commit}, value) {
+            console.log(value)
+            commit('GET_VREVIEW_VIDEO', value)
+            // console.log(value)
         }
+
     },
     modules: {}
 })
