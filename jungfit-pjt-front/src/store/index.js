@@ -1,3 +1,4 @@
+import router from '@/router';
 import axios from 'axios'
 import Vue from 'vue'
 import Vuex from 'vuex'
@@ -22,6 +23,9 @@ export default new Vuex.Store({
         p3: [],
         p4: [],
         selectedReview: [],
+        detailReview: [],
+        newVReview: [],
+        reviews: [],
     },
     getters: {},
     mutations: {
@@ -41,7 +45,7 @@ export default new Vuex.Store({
         },
         GET_VREVIEW_LIST(state, value) {
             state.selectedReview = value
-            console.log(value)
+                // console.log(value)
         },
         GET_VREVIEW_VIDEO(state, value) {
             state.selectedVideo = [];
@@ -55,8 +59,15 @@ export default new Vuex.Store({
                     state.selectedVideo.push(v)
                 }
             })
-
         },
+        GET_VREVIEW_DETAIL(state, value) {
+            state.detailReview = [];
+            state.detailReview.push(value);
+            console.log(state.detailReview)
+        },
+        CREATE_VREVIEW(state, value) {
+            state.reviews.push(value)
+        }
 
     },
     actions: {
@@ -100,29 +111,73 @@ export default new Vuex.Store({
 
             .catch((err) => {
                 console.log(err)
-                console.log("에러남")
+                console.log("유투브 에러남")
             })
         },
         getVReviewList({ commit }, value) {
             let params = null
-
+                //    console.log(value)
             if (value) {
                 params = value
             }
-            const API_URL = `${REST_API}/review/video-review/` + params
+            let API_URL = `${REST_API}/review/video-review/` + value.videoId
+
+            // if (value.keyword) {
+            //     const paramkey = value.keyword
+            //     const parammode = value.mode
+            //     API_URL += ('?mode=' + parammode + '&key=' + paramkey)
+            //     console.log(paramkey)
+            //     console.log(parammode)
+            // }
+            console.log(API_URL)
+
             axios({
                 url: API_URL,
                 method: 'GET',
                 params, //그걸 같이 넘겨줘
             }).then((res) => {
-                if (res.data)
-                    commit('GET_VREVIEW_LIST', res.data)
+                console.log(res.data)
+                commit('GET_VREVIEW_LIST', res.data)
             }).catch((err) => {
                 console.log(err)
             })
         },
         getVReviewVideo({ commit }, value) {
             commit('GET_VREVIEW_VIDEO', value)
+        },
+        getVReviewDetail({ commit }, value) {
+            // console.log(value)
+            let params = null
+
+            if (value) {
+                params = value
+            }
+            const API_URL = `${REST_API}/review/video/` + params
+            axios({
+                url: API_URL,
+                method: 'GET',
+                params, //그걸 같이 넘겨줘
+            }).then((res) => {
+                // console.log(res)
+                if (res.data)
+                    commit('GET_VREVIEW_DETAIL', res.data)
+            }).catch((err) => {
+                console.log(err)
+            })
+        },
+        createVReview({ commit }, vreview) {
+            const API_URL = `${REST_API}/review/video/`
+            axios({
+                url: API_URL,
+                method: 'POST',
+                params: vreview,
+            }).then((res) => {
+                commit('CREATE_VREVIEW', res)
+                    //여기,,,
+                router.push("/review/video/" + res.videoId)
+            }).catch((err) => {
+                console.log(err)
+            })
         }
     },
     modules: {}

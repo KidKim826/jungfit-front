@@ -1,8 +1,10 @@
 <template>
+
   <header id="app" >
+
   <v-app>
     <div>
-      <v-app-bar 
+      <v-app-bar class="text-uppercase"
         color="deep-purple"
         dark
       >
@@ -26,31 +28,33 @@
         absolute
         temporary
       >
-        <v-list
-          nav
-          dense
-        >
+        <v-layout column align-center>
+          <v-flex class="mt-5">
+            <v-avatar size="100">
+              <img src="logo.png" alt="내프로필사진입니다.">
+            </v-avatar>
+            <p class="white--text subheading mt-1">
+              전희정
+            </p>
+          </v-flex>
+        </v-layout>
+        <v-list nav dense>
           <v-list-item-group
             v-model="group"
             active-class="deep-purple--text text--accent-4"
+            v-for="l in links" :key="l.text" router :to="l.route"
           >
             <v-list-item>
               <v-list-item-icon>
-                <v-icon>mdi-home</v-icon>
+                <v-icon>{{l.icon}}</v-icon>
               </v-list-item-icon>
-              <v-list-item-title >Home</v-list-item-title>
-            </v-list-item>
-  
-            <v-list-item>
-              <v-list-item-icon>
-                <v-icon>mdi-account</v-icon>
-              </v-list-item-icon>
-              <v-list-item-title>MyPage</v-list-item-title>
+              <v-list-item-title>{{l.text}}</v-list-item-title>
             </v-list-item>
           </v-list-item-group>
         </v-list>
       </v-navigation-drawer>
 </header>
+
 </template>
 
 <script>
@@ -60,6 +64,12 @@ export default {
     return {
     drawer: false,
     group: null,
+    links: [
+      {icon: 'mdi-home', text: 'home', route: '/'},
+      {icon: 'mdi-account', text: 'videos', route: '/video'},
+      // {icon: 'trainer', text: 'trainers', route: '/'},
+      // {icon: 'email', text: 'mail-box', route: '/'},
+    ]
     }
   }
 
@@ -67,5 +77,15 @@ export default {
 </script>
 
 <style>
+.v-avatar{
+  margin: 78px;
+}
+p {
+  margin-top: -60px;
+  text-align: center;
+}
+div>.v-list-item {
+  
+}
 
 </style>

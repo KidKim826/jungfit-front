@@ -5,6 +5,7 @@
       <h2>비디오 리뷰 리스트</h2>
     </div>
     <div>
+    <div>
       <iframe
         width="355"
         height="220"
@@ -15,15 +16,61 @@
         allowfullscreen
       ></iframe>
     </div>
+    <div>
+      
+    <div class="search">
+      
+      <select v-model="mode">
+        <option value="1">제목</option>
+        <option value="2">내용</option>
+        <option value="3">제목+내용</option>
+      </select>
+      <input type="text" v-model="keyword" />
+      <button @click="search">검색</button>
+    </div>
+
+
+
+
+
+    </div>
+    <div><v-btn
+      class="mx-2"
+      fab
+      dark
+      small
+      color="indigo"
+    >
+      <v-icon dark>
+
+
+
+
+        <router-link> 작성 폼 가는 링크</router-link>
+        
+
+
+
+        mdi-pencil
+      </v-icon>
+    </v-btn></div>
+    </div>
     <div id="app">
       <v-app id="inspire" >
         <v-data-table :headers="headers" :items="reviews" :items-per-page="5" class="elevation-1">
-          <template v-slot:[`item.content`]="{ value }" >
-            <router-link :to="'/review/video/'+reviewId">
+          <template v-slot:[`item.reviewId`]="{ value }" >
+            <router-link :to="'/review/video/'+value">
             <div class="text-truncate" style="max-width: 500px; max-height: 48px;">
             {{ value }}
             </div>
             </router-link>
+          </template>
+          <template v-slot:[`item.content`]="{ value }" >
+            <!-- <router-link :to="'/review/video/'+reviewId"> -->
+            <div class="text-truncate" style="max-width: 500px; max-height: 48px;">
+            {{ value }}
+            </div>
+            <!-- </router-link> -->
           </template>
           <template v-slot:[`item.title`]="{ value }">
             <div class="text-truncate" style="max-width: 150px; max-height: 48px;">
@@ -74,10 +121,14 @@ export default {
     search() {
       const payload = {
         mode: this.mode,
-        keyword: this.keyword
+        keyword: this.keyword,
+        videoId: this.reviews[0].videoId
       };
+      // console.log(this.mode)
+      // console.log(this.keyword)
       this.$store.dispatch("getVReviewList", payload);
-    }
+    },
+
   }
 };
 </script>
