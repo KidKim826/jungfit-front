@@ -1,14 +1,14 @@
 import axios from 'axios'
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import createPersistateState from "vuex-persistedstate";
+import createPersistateState from "vuex-persistedstate";
 
 Vue.use(Vuex)
 
 const REST_API = `http://localhost:9999/jungfit`
 
 export default new Vuex.Store({
-    // plugins: [createPersistateState()],
+    plugins: [createPersistateState()],
     state: {
         videos: [],
         a: [],
@@ -49,15 +49,15 @@ export default new Vuex.Store({
             // console.log(value)
             state.selectedVideo = [];
             state.videos.forEach(v => {
-                if (v.id.videoId === value) {
+                if (v.id.videoId === value.data.videoId) {
                     state.selectedVideo.push(v)
                         // console.log(state.selectedVideo)
                 }
             });
             state.partVideos.forEach(v => {
-                if (v.videoId === value) {
+                if (v.videoId === value.data.videoId) {
                     state.selectedVideo.push(v)
-                        // console.log(state.selectedVideo)
+                        console.log(state.selectedVideo)
                 }
             });
 
@@ -118,7 +118,7 @@ export default new Vuex.Store({
             if (value) {
                 params = value
             }
-            // console.log(params)
+            console.log(params)
             // console.log(params.videoId)
 
             const API_URL = `${REST_API}/review/video-review/` + params
@@ -127,7 +127,7 @@ export default new Vuex.Store({
                 method: 'GET',
                 params, //그걸 같이 넘겨줘
             }).then((res) => {
-                // console.log(res)
+                console.log(res)
                 commit('GET_VREVIEW_LIST', res.data)
             }).catch((err) => {
                 console.log(err)

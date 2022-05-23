@@ -41,11 +41,12 @@ export default {
       return{
         keyword:"",
         mode:1,
-        items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+        videoId: "",
         }
     },
     computed:{
         ...mapState(['selectedVideo'])
+
     },
     created(){
     const pathName = new URL(document.location).pathname.split("/");
@@ -56,7 +57,7 @@ export default {
   methods:{
     search(){
     const payload ={
-      videoId:this.videoId,
+      
       mode:this.mode,
       keyword:this.keyword
     }

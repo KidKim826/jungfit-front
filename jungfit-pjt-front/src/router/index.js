@@ -28,7 +28,7 @@ const routes = [{
     name: 'review',
     component: VReviewView,
     children: [{
-            path: "video/:id",
+            path: "video-review/:id",
             name: "VReviewList",
             component: VReviewList
         },
