@@ -16,11 +16,12 @@ export default new Vuex.Store({
         c: [],
         d: [],
         selectedVideo: [],
-        partVideos:[],
+        partVideos: [],
         p1: [],
         p2: [],
         p3: [],
         p4: [],
+        selectedReview: [],
     },
     getters: {},
     mutations: {
@@ -30,7 +31,7 @@ export default new Vuex.Store({
             state.b = [value[3], value[4], value[5]]
             state.c = [value[6], value[7], value[8]]
             state.d = [value[9], value[10], value[11]]
-            console.log(state.videos)
+                // console.log(state.videos)
         },
         GET_PART_LIST(state, value) {
             state.partVideos = value
@@ -38,11 +39,11 @@ export default new Vuex.Store({
             state.p2 = [value[3], value[4], value[5]]
             state.p3 = [value[6], value[7], value[8]]
             state.p4 = [value[9], value[10], value[11]]
-          
-            console.log(state.p1)
-            console.log(state.p2)
-            console.log(state.p3)
-            console.log(state.p4)
+
+            // console.log(state.p1)
+            // console.log(state.p2)
+            // console.log(state.p3)
+            // console.log(state.p4)
         },
         GET_VREVIEW_LIST(state, value) {
             // console.log(value)
@@ -59,27 +60,30 @@ export default new Vuex.Store({
                         // console.log(state.selectedVideo)
                 }
             });
+
+            // console.log()
+
         }
 
     },
     actions: {
-        getPartList({commit}, value) {
+        getPartList({ commit }, value) {
             let params = null
 
-            if(value) { //들어오는 payload가 있다면
-              params = value //params는 payload로
+            if (value) { //들어오는 payload가 있다면
+                params = value //params는 payload로
             }
-            const API_URL=`${REST_API}/video/list/part/`+params
+            const API_URL = `${REST_API}/video/list/part/` + params
             axios({
-              url: API_URL,
-              method:'GET',
-              params, //그걸 같이 넘겨줘
+                url: API_URL,
+                method: 'GET',
+                params, //그걸 같이 넘겨줘
             }).then((res) => {
-              console.log(res)
-              commit('GET_PART_LIST', res.data)
+                // console.log(res)
+                commit('GET_PART_LIST', res.data)
             }).catch((err) => {
-              console.log(err)
-            })    
+                console.log(err)
+            })
         },
         getYoutubeList({ commit }, value) {
             const YOUTUBE_KEY = process.env.VUE_APP_YOUTUBE_API_KEY;
@@ -109,8 +113,25 @@ export default new Vuex.Store({
             })
         },
         getVReviewList({ commit }, value) {
-            commit('GET_VREVIEW_LIST', value)
+            let params = null
 
+            if (value) {
+                params = value
+            }
+            // console.log(params)
+            // console.log(params.videoId)
+
+            const API_URL = `${REST_API}/review/video-review/` + params
+            axios({
+                url: API_URL,
+                method: 'GET',
+                params, //그걸 같이 넘겨줘
+            }).then((res) => {
+                // console.log(res)
+                commit('GET_VREVIEW_LIST', res.data)
+            }).catch((err) => {
+                console.log(err)
+            })
         }
     },
     modules: {}

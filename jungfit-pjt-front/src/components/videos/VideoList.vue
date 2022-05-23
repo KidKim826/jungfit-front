@@ -37,7 +37,7 @@
 
                         <v-card-actions>
                           <v-btn>
-                            <router-link :to="'/review/video/'+v.videoId">리뷰</router-link>
+                            <router-link :to="'/review/video-review/'+v.videoId">리뷰</router-link>
                           </v-btn>
 
                           <v-spacer></v-spacer>
@@ -79,7 +79,7 @@
 
                         <v-card-actions>
                           <v-btn>
-                            <router-link :to="'/review/review/'+v.videoId">리뷰</router-link>
+                            <router-link :to="'/review/video-review/'+v.videoId">리뷰</router-link>
                           </v-btn>
 
                           <v-spacer></v-spacer>
@@ -121,7 +121,7 @@
 
                         <v-card-actions>
                           <v-btn>
-                            <router-link :to="'/review/video/'+v.videoId">리뷰</router-link>
+                            <router-link :to="'/review/video-review/'+v.videoId">리뷰</router-link>
                           </v-btn>
 
                           <v-spacer></v-spacer>
@@ -162,7 +162,7 @@
                         </v-card-text>
                         <v-card-actions>
                           <v-btn>
-                            <router-link :to="'/review/video/'+v.videoId">리뷰</router-link>
+                            <router-link :to="'/review/video-review/'+v.videoId">리뷰</router-link>
                           </v-btn>
 
                           <v-spacer></v-spacer>
@@ -222,7 +222,7 @@
 
                         <v-card-actions>
                           <v-btn>
-                            <router-link :to="`/review/video/${v.id.videoId}`">리뷰</router-link>
+                            <router-link :to="`/review/video-review/${v.id.videoId}`">리뷰</router-link>
                           </v-btn>
 
                           <v-spacer></v-spacer>
@@ -264,7 +264,7 @@
 
                         <v-card-actions>
                           <v-btn>
-                            <router-link :to="`/review/video/${v.id.videoId}`">리뷰</router-link>
+                            <router-link :to="`/review/video-review/${v.id.videoId}`">리뷰</router-link>
                           </v-btn>
 
                           <v-spacer></v-spacer>
@@ -306,7 +306,7 @@
 
                         <v-card-actions>
                           <v-btn>
-                            <router-link :to="`/review/review/${v.id.videoId}`">리뷰</router-link>
+                            <router-link :to="`/review/video-review/${v.id.videoId}`">리뷰</router-link>
                           </v-btn>
 
                           <v-spacer></v-spacer>
@@ -347,7 +347,7 @@
                         </v-card-text>
                         <v-card-actions>
                           <v-btn>
-                            <router-link :to="`/video/review/${v.id.videoId}`">리뷰</router-link>
+                            <router-link :to="`/review/video-review/${v.id.videoId}`">리뷰</router-link>
                           </v-btn>
 
                           <v-spacer></v-spacer>
