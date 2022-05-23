@@ -30,6 +30,7 @@ export default new Vuex.Store({
             state.b = [value[3], value[4], value[5]]
             state.c = [value[6], value[7], value[8]]
             state.d = [value[9], value[10], value[11]]
+            console.log(state.videos)
         },
         GET_TOP_LIST(state, value) {
             state.topVideos = value
@@ -37,6 +38,7 @@ export default new Vuex.Store({
             state.t2 = [value[3], value[4], value[5]]
             state.t3 = [value[6], value[7], value[8]]
             state.t4 = [value[9], value[10], value[11]]
+          
             console.log(state.t1)
             console.log(state.t2)
             console.log(state.t3)
@@ -62,7 +64,7 @@ export default new Vuex.Store({
             if(value) { //들어오는 payload가 있다면
               params = value //params는 payload로
             }
-            const API_URL=`${REST_API}/review/video`
+            const API_URL=`${REST_API}/video/list/part/`+params
             axios({
               url: API_URL,
               method:'GET',
