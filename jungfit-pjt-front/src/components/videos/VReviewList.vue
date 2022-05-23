@@ -16,8 +16,21 @@
       ></iframe>
     </div>
     <div id="app">
-      <v-app id="inspire">
-        <v-data-table :headers="headers" :items="reviews" :items-per-page="5" class="elevation-1"></v-data-table>
+      <v-app id="inspire" >
+        <v-data-table :headers="headers" :items="reviews" :items-per-page="5" class="elevation-1">
+          <template v-slot:[`item.content`]="{ value }" >
+            <router-link :to="'/review/video/'+reviewId">
+            <div class="text-truncate" style="max-width: 500px; max-height: 48px;">
+            {{ value }}
+            </div>
+            </router-link>
+          </template>
+          <template v-slot:[`item.title`]="{ value }">
+            <div class="text-truncate" style="max-width: 150px; max-height: 48px;">
+            {{ value }}
+            </div>
+          </template>
+        </v-data-table>
       </v-app>
     </div>
   </div>
@@ -33,6 +46,7 @@ export default {
       mode: 1,
       videoId: "",
       headers: [
+        { text: "리뷰번호", value: "reviewId" },
         {
           text: "리뷰제목",
           align: "start",
@@ -40,7 +54,7 @@ export default {
           value: "title"
         },
         { text: "내용", value: "content" },
-        { text: "작성자", value: "reviewId" },
+        { text: "작성자", value: "userId" },
         { text: "조회수", value: "viewCnt" },
         { text: "작성일자", value: "regDate" }
       ],
@@ -69,4 +83,6 @@ export default {
 </script>
 
 <style>
+
+
 </style>

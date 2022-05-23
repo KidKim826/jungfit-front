@@ -31,7 +31,6 @@ export default new Vuex.Store({
             state.b = [value[3], value[4], value[5]]
             state.c = [value[6], value[7], value[8]]
             state.d = [value[9], value[10], value[11]]
-                // console.log(state.videos)
         },
         GET_PART_LIST(state, value) {
             state.partVideos = value
@@ -39,31 +38,21 @@ export default new Vuex.Store({
             state.p2 = [value[3], value[4], value[5]]
             state.p3 = [value[6], value[7], value[8]]
             state.p4 = [value[9], value[10], value[11]]
-
-            // console.log(state.p1)
-            // console.log(state.p2)
-            // console.log(state.p3)
-            // console.log(state.p4)
         },
         GET_VREVIEW_LIST(state, value) {
             state.selectedReview = value
-            console.log(state.selectedReview[0])
-            // console.log()
+            console.log(value)
         },
         GET_VREVIEW_VIDEO(state, value) {
-            // console.log(value)
             state.selectedVideo = [];
             state.videos.forEach(v => {
                 if (v.id.videoId === value) {
                     state.selectedVideo.push(v)
-                        // console.log(state.selectedVideo)
                 }
             })
             state.partVideos.forEach(v => {
                 if (v.videoId === value) {
                     state.selectedVideo.push(v)
-                    console.log(state.selectedVideo)
-                        // console.log(state.selectedVideo)
                 }
             })
 
@@ -83,7 +72,6 @@ export default new Vuex.Store({
                 method: 'GET',
                 params, //그걸 같이 넘겨줘
             }).then((res) => {
-                // console.log(res)
                 commit('GET_PART_LIST', res.data)
             }).catch((err) => {
                 console.log(err)
@@ -108,7 +96,6 @@ export default new Vuex.Store({
 
             .then((res) => {
                 commit("GET_YOUTUBE_LIST", res.data.items)
-                    // console.log(res.data.items)
             })
 
             .catch((err) => {
@@ -122,27 +109,21 @@ export default new Vuex.Store({
             if (value) {
                 params = value
             }
-            console.log(params)
-            // console.log(params.videoId)
             const API_URL = `${REST_API}/review/video-review/` + params
             axios({
                 url: API_URL,
                 method: 'GET',
                 params, //그걸 같이 넘겨줘
             }).then((res) => {
-                console.log(res)
-                if(res.data)
+                if (res.data)
                     commit('GET_VREVIEW_LIST', res.data)
             }).catch((err) => {
                 console.log(err)
             })
         },
-        getVReviewVideo({commit}, value) {
-            console.log(value)
+        getVReviewVideo({ commit }, value) {
             commit('GET_VREVIEW_VIDEO', value)
-            // console.log(value)
         }
-
     },
     modules: {}
 })
