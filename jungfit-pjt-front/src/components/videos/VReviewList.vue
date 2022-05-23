@@ -124,8 +124,9 @@ export default {
         keyword: this.keyword,
         videoId: this.reviews[0].videoId
       };
-      // console.log(this.mode)
-      // console.log(this.keyword)
+      console.log(this.mode)
+      console.log(this.keyword)
+      console.log(this.videoId)
       this.$store.dispatch("getVReviewList", payload);
     },
 

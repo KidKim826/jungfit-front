@@ -116,27 +116,25 @@ export default new Vuex.Store({
         },
         getVReviewList({ commit }, value) {
             let params = null
-                //    console.log(value)
-            if (value) {
+            let API_URL = `${REST_API}/review/video-review/`
+
+            if (!value.keyword) {
+                API_URL += value
+                params = value
+                console.log(value)
+            } else {
+                API_URL += value.videoId
                 params = value
             }
-            let API_URL = `${REST_API}/review/video-review/` + value.videoId
-
-            // if (value.keyword) {
-            //     const paramkey = value.keyword
-            //     const parammode = value.mode
-            //     API_URL += ('?mode=' + parammode + '&key=' + paramkey)
-            //     console.log(paramkey)
-            //     console.log(parammode)
-            // }
             console.log(API_URL)
+            console.log(params)
 
             axios({
                 url: API_URL,
                 method: 'GET',
                 params, //그걸 같이 넘겨줘
             }).then((res) => {
-                console.log(res.data)
+                console.log(res)
                 commit('GET_VREVIEW_LIST', res.data)
             }).catch((err) => {
                 console.log(err)
