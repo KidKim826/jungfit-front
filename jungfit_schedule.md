@@ -9,8 +9,6 @@
 | **5/22** | **5/23** | **5/24** | **5/25**                 | **5/26**                                            | **5/27**                                                  |          |
 |          |          |          |                          |                                                     | 발표 !                                                    |          |
 
-
-
 뭘 했는지 기록하면 좋을 것 같아서
 
 ### 5/18 수
@@ -25,14 +23,18 @@
 - [x] dto 작성
 
 ### 5/20 금
-
-
+- [x] back-end(VideoReview/TrainerReview/Login/Messenger)
 
 ### 5/21 토
-
+- [x] 휴일
 ### 5/22 일
+- [x] front-end (nav/videoList/reviewList시작)
+- [x] DB Data (ERD)
 
 ### 5/23 월
+- [x] VideoReview(완성) / TrainerReview(완성)
+- [x] Back-Front 연결
+- [x] 시간이 허락한다면 로그인 로그아웃
 
 ### 5/24 화
 
