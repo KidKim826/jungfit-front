@@ -32,11 +32,13 @@
 - [x] DB Data (ERD)
 
 ### 5/23 월
-- [x] VideoReview(완성) / TrainerReview(완성)
-- [x] Back-Front 연결
-- [x] 시간이 허락한다면 로그인 로그아웃
+- [x] VideoReview(detail / list / search/) / mypage(form - avatar/mail/review)
+- [x] Back-Front 연결 (createreview)
+- [ ] 시간이 허락한다면 로그인 로그아웃
 
 ### 5/24 화
+- [ ] VideoReview(완성)
+- [ ] 시간이 허락한다면 로그인 로그아웃
 
 ### 5/25 수
 
