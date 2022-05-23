@@ -3,10 +3,10 @@
     <br />
     <h3>부위 별 운동 영상 TOP12</h3>
     <div class="text-center">
-      <v-btn @click="searchTop('전신')" class="ma-2" outlined color="indigo">전신</v-btn>
-      <v-btn @click="searchTop('상체')" class="ma-2" outlined color="indigo">상체</v-btn>
-      <v-btn @click="searchTop('하체')" class="ma-2" outlined color="indigo">하체</v-btn>
-      <v-btn @click="searchTop('복부')" class="ma-2" outlined color="indigo">복부</v-btn>
+      <v-btn @click="searchPart('전신')" class="ma-2" outlined color="indigo">전신</v-btn>
+      <v-btn @click="searchPart('상체')" class="ma-2" outlined color="indigo">상체</v-btn>
+      <v-btn @click="searchPart('하체')" class="ma-2" outlined color="indigo">하체</v-btn>
+      <v-btn @click="searchPart('복부')" class="ma-2" outlined color="indigo">복부</v-btn>
     </div>
 
     <v-app id="inspire">
@@ -17,7 +17,7 @@
               <v-carousel-item>
                 <v-container fill-height>
                   <v-row style="height: 400px;">
-                    <v-col cols="4" v-for="(v,i) in t1" :key="i">
+                    <v-col cols="4" v-for="(v,i) in p1" :key="i">
                       <v-card class="mx-auto" max-width="360">
                         <iframe
                           width="355"
@@ -37,7 +37,7 @@
 
                         <v-card-actions>
                           <v-btn>
-                            <router-link :to="`/video/review/${v.videoId}`">리뷰</router-link>
+                            <router-link :to="'/video/review/'+v.videoId">리뷰</router-link>
                           </v-btn>
 
                           <v-spacer></v-spacer>
@@ -59,7 +59,7 @@
               <v-carousel-item>
                 <v-container fill-height>
                   <v-row style="height: 400px;">
-                    <v-col cols="4" v-for="(v,i) in t2" :key="i">
+                    <v-col cols="4" v-for="(v,i) in p2" :key="i">
                       <v-card class="mx-auto" max-width="360">
                         <iframe
                           width="355"
@@ -79,7 +79,7 @@
 
                         <v-card-actions>
                           <v-btn>
-                            <router-link :to="`/video/review/${v.videoId}`">리뷰</router-link>
+                            <router-link :to="'/video/review/'+v.videoId">리뷰</router-link>
                           </v-btn>
 
                           <v-spacer></v-spacer>
@@ -101,7 +101,7 @@
               <v-carousel-item>
                 <v-container fill-height>
                   <v-row style="height: 400px;">
-                    <v-col cols="4" v-for="(v,i) in t3" :key="i">
+                    <v-col cols="4" v-for="(v,i) in p3" :key="i">
                       <v-card class="mx-auto" max-width="360">
                         <iframe
                           width="355"
@@ -121,7 +121,7 @@
 
                         <v-card-actions>
                           <v-btn>
-                            <router-link :to="`/video/review/${v.videoId}`">리뷰</router-link>
+                            <router-link :to="'/video/review/'+v.videoId">리뷰</router-link>
                           </v-btn>
 
                           <v-spacer></v-spacer>
@@ -143,7 +143,7 @@
               <v-carousel-item>
                 <v-container fill-height>
                   <v-row style="height: 400px;">
-                    <v-col cols="4" v-for="(v,i) in t4" :key="i">
+                    <v-col cols="4" v-for="(v,i) in p4" :key="i">
                       <v-card class="mx-auto" max-width="360">
                         <iframe
                           width="355"
@@ -162,7 +162,7 @@
                         </v-card-text>
                         <v-card-actions>
                           <v-btn>
-                            <router-link :to="`/video/review/${v.videoId}`">리뷰</router-link>
+                            <router-link :to="'/video/review/'+v.videoId">리뷰</router-link>
                           </v-btn>
 
                           <v-spacer></v-spacer>
@@ -381,22 +381,22 @@ export default {
   data() {
     return {
       defaultKey: "요가 홈트",
-      defaultTop: "전신"
+      defaultPart: "전신"
     };
   },
   computed: {
-    ...mapState(["a", "b", "c", "d", "topVideos", "t1", "t2", "t3", "t4"])
+    ...mapState(["a", "b", "c", "d", "partVideos", "p1", "p2", "p3", "p4"])
   },
   created() {
     this.$store.dispatch("getYoutubeList", this.defaultKey)
-    this.$store.dispatch("getTopList", this.defaultTop)
+    this.$store.dispatch("getPartList", this.defaultPart)
   },
   methods: {
     search(value) {
       this.$store.dispatch("getYoutubeList", value)
     },
-    searchTop(value) {
-      this.$store.dispatch("getTopList", value)
+    searchPart(value) {
+      this.$store.dispatch("getPartList", value)
     }
 
   }
