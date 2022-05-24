@@ -40,7 +40,7 @@ const routes = [{
                 component: SignIn
             },
             {
-                path: "mypage/:userid",
+                path: "mypage",
                 name: "MyPage",
                 component: MyPage
             }

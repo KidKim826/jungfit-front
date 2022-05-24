@@ -31,6 +31,8 @@ export default new Vuex.Store({
         manager:"",
         adminLogin: false,
         userInfo: [], // 유저 객체
+        userReviews: [],
+        mails:[],
     },
     getters: {},
     mutations: {
@@ -40,11 +42,17 @@ export default new Vuex.Store({
             // console.log(state.adminLogin)
         
         },
+        MANAGER_LOGOUT(state) {
+            sessionStorage.clear()
+            state.manager = ""
+            state.adminLogin = false
+        },
         GET_USER_INFO(state, value) {
             state.userInfo = value.data
             // console.log(value.data)
         },
         USER_LOGIN(state, value) {
+            console.log(value)
             state.user = value
             state.isLogin = true
             // console.log(state.isLogin)
@@ -56,6 +64,9 @@ export default new Vuex.Store({
         },
         USER_SIGN_IN(state) {
             state
+        },
+        GET_USER_MESSAGES(state, value) {
+            state.mails = value
         },
         GET_YOUTUBE_LIST(state, value) {
             state.videos = value
@@ -122,6 +133,18 @@ export default new Vuex.Store({
                 router.push({name: 'ManagerView'})
             })
         },
+        managerLogout({commit}) {
+            const API_URL = `${REST_API}/admin/manager`
+            axios({
+                url: API_URL,
+                method: 'GET',
+            }).then(() => {
+                commit('MANAGER_LOGOUT')
+                router.push({ name: 'home' })
+            }).catch((err) => {
+                console.log(err)
+            })
+        },
         getUserInfo({ commit }, value) {
             let params = null
             if (value) { //들어오는 payload가 있다면
@@ -173,6 +196,29 @@ export default new Vuex.Store({
             }).then(() => {
                 commit('USER_LOGOUT')
                 router.push({ name: 'home' })
+            }).catch((err) => {
+                console.log(err)
+            })
+        },
+        getUserMessages({ commit }, value) {
+            console.log(value)
+            let params = null
+            if (value) { //들어오는 payload가 있다면
+                params = value //params는 payload로
+            }
+            const API_URL = `${REST_API}/mailbox/message/list/`+params
+            console.log(API_URL)
+
+            axios({
+                url: API_URL,
+                method: 'GET',
+                params, //그걸 같이 넘겨줘
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                }
+            }).then((res) => {
+                console.log(res)
+                commit('GET_USER_MESSAGES', res)
             }).catch((err) => {
                 console.log(err)
             })
@@ -341,7 +387,8 @@ export default new Vuex.Store({
             }).catch((err) => {
                 console.log(err)
             })
-        }
+        },
+
     },
     modules: {}
 })

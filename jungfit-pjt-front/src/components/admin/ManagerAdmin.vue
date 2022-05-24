@@ -1,5 +1,6 @@
 <template>
   <v-container fluid class="down-top-padding">
+    <v-btn @click="LogOut">logout</v-btn>
     <v-row>
       <v-col cols="12" lg="8">
         <v-card>
@@ -358,6 +359,9 @@ export default {
       });
 
       this.task = null;
+    },
+    LogOut() {
+      this.$store.dispatch("managerLogout");
     }
   }
 };

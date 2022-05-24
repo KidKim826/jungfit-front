@@ -10,14 +10,14 @@
 
           <v-spacer></v-spacer>
           <div v-if="isLogin">
-            <router-link :to="'/user/mypage/'+user">{{user}}</router-link>님 환영합니다!
-            <v-btn flat @click="LogOut">
+            <router-link :to="'/user/mypage/'">{{user}}</router-link>님 환영합니다!
+            <v-btn text @click="LogOut">
               <span>로그아웃</span>
             </v-btn>
           </div>
           <div v-else>
             <router-link :to="'/user/loginform'">
-              <v-btn flat>
+              <v-btn text>
                 <span>로그인</span>
               </v-btn>
             </router-link>
