@@ -15,7 +15,6 @@
   
   
       <v-card-text class="text--primary">
-        <div>충돌 테스트</div>
         <div>{{detailReview.userId}}</div>
         <div>{{detailReview.regDate}}</div>
         <div>{{detailReview.viewCnt}}</div>
@@ -26,6 +25,7 @@
         <v-btn
           color="orange"
           text
+          @click="back"
         >
           돌아가기
         </v-btn>
@@ -35,10 +35,11 @@
           text
         >
           수정
-        </v-btn>
+        </v-btn >
          <v-btn
           color="orange"
           text
+          @click="del"
         >
           삭제
         </v-btn>
@@ -54,7 +55,7 @@ import {mapState} from 'vuex';
 export default {
   computed:{
     ...mapState([
-      'detailReview'      
+      'detailReview'
     ])
   },
   data(){
@@ -69,6 +70,15 @@ export default {
     this.$store.dispatch("getVReviewDetail", reviewId);
     console.log(reviewId)
   },
+  methods:{
+    back(){
+      this.$router.push(`/review/video-review/`+this.detatilReview.videoId)    
+    },
+    del(){
+      this.$store.dispatch('deleteVReview',this.detatilReview.reviewId)
+    },
+
+  }
 }
 </script>
 

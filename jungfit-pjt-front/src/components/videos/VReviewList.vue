@@ -4,7 +4,7 @@
     <div>
       <h2>비디오 리뷰 리스트</h2>
     </div>
-    <div>
+    
     <div>
       <iframe
         width="355"
@@ -17,23 +17,18 @@
       ></iframe>
     </div>
     <div>
-      
+          <div>
+        <b-dropdown v-model="mode" id="dropdown-1" :text="label" class="m-md-2">
+          <b-dropdown-item value="1" >제목</b-dropdown-item>
+          <b-dropdown-item value="2" >내용</b-dropdown-item>
+          <b-dropdown-item value="3" >제목+내용</b-dropdown-item>
+        </b-dropdown>
+      </div>
     <div class="search">
-      
-      <select v-model="mode">
-        <option value="1">제목</option>
-        <option value="2">내용</option>
-        <option value="3">제목+내용</option>
-      </select>
       <input type="text" v-model="keyword" />
       <button @click="search">검색</button>
     </div>
-
-
-
-
-
-    </div>
+  <router-link :to="'/review/video/create/'+selectedVideo[0].videoId">
     <div><v-btn
       class="mx-2"
       fab
@@ -42,19 +37,12 @@
       color="indigo"
     >
       <v-icon dark>
-
-
-
-
-        <router-link> 작성 폼 가는 링크</router-link>
-        
-
-
-
         mdi-pencil
       </v-icon>
     </v-btn></div>
+    </router-link>
     </div>
+
     <div id="app">
       <v-app id="inspire" >
         <v-data-table :headers="headers" :items="selectedReview" :items-per-page="5" class="elevation-1">
@@ -86,50 +74,55 @@
 <script>
 import { mapState } from "vuex";
 export default {
-  name: "VReviewList",
-  data() {
-    return {
-      keyword: "",
-      mode: 1,
-      videoId: "",
-      headers: [
-        { text: "리뷰번호", value: "reviewId" },
-        {
-          text: "리뷰제목",
-          align: "start",
-          sortable: false,
-          value: "title"
-        },
-        { text: "내용", value: "content" },
-        { text: "작성자", value: "userId" },
-        { text: "조회수", value: "viewCnt" },
-        { text: "작성일자", value: "regDate" }
-      ],
-    };
-  },
-  computed: {
-    ...mapState(['selectedVideo', 'selectedReview'])
-  },
-  created() {
-    const pathName = new URL(document.location).pathname.split("/");
-    const vdoId = pathName[pathName.length - 1];
-    this.$store.dispatch("getVReviewList", vdoId);
-    this.$store.dispatch("getVReviewVideo", vdoId);
-  },
-  methods: {
-    search() {
-      const payload = {
-        mode: this.mode,
-        keyword: this.keyword,
-        videoId: this.selectedReview[0].videoId
-      };
-      console.log(this.mode)
-      console.log(this.keyword)
-      console.log(this.videoId)
-      this.$store.dispatch("getVReviewList", payload);
+    name: "VReviewList",
+    data() {
+        return {
+            keyword: "",
+            mode: 1,
+            videoId: "",
+            headers: [
+                { text: "리뷰번호", value: "reviewId" },
+                {
+                    text: "리뷰제목",
+                    align: "start",
+                    sortable: false,
+                    value: "title"
+                },
+                { text: "내용", value: "content" },
+                { text: "작성자", value: "userId" },
+                { text: "조회수", value: "viewCnt" },
+                { text: "작성일자", value: "regDate" }
+            ],
+            items: [
+                "제목",
+                "내용",
+                "제목+내용"
+            ],
+            label: "",
+        };
     },
-
-  }
+    computed: {
+        ...mapState(["selectedVideo", "selectedReview"])
+    },
+    created() {
+        const pathName = new URL(document.location).pathname.split("/");
+        const vdoId = pathName[pathName.length - 1];
+        this.$store.dispatch("getVReviewList", vdoId);
+        this.$store.dispatch("getVReviewVideo", vdoId);
+    },
+    methods: {
+        search() {
+            const payload = {
+                mode: this.mode,
+                keyword: this.keyword,
+                videoId: this.selectedReview[0].videoId
+            };
+            console.log(this.mode);
+            console.log(this.keyword);
+            console.log(this.videoId);
+            this.$store.dispatch("getVReviewList", payload);
+        },
+    },
 };
 </script>
 

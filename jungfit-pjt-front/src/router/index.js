@@ -7,6 +7,7 @@ import VReviewView from '@/views/VReviewView.vue'
 import VideoList from '@/components/videos/VideoList.vue'
 import VReviewList from '@/components/videos/VReviewList.vue'
 import VReviewDetail from '@/components/videos/VReviewDetail.vue'
+import VReviewCreate from '@/components/videos/VReviewCreate.vue'
 
 Vue.use(VueRouter)
 
@@ -40,7 +41,11 @@ const routes = [{
             path: "video/:reviewId",
             name: "VReviewDetail",
             component: VReviewDetail
-        }]
+        }, {
+            path: "video/create/:id",
+            name: "VReviewCreate",
+            component: VReviewCreate
+        }, ]
     }
 ]
 
