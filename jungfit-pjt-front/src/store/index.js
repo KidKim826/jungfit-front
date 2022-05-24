@@ -26,22 +26,28 @@ export default new Vuex.Store({
         detailReview: [],
         newVReview: [],
         reviews: [],
-        user: "",
+        user: "", // 유저 아이디
         isLogin: false,
         manager:"",
         adminLogin: false,
+        userInfo: [], // 유저 객체
     },
     getters: {},
     mutations: {
         MANAGER_LOGIN(state, value) {
             state.manager = value
             state.adminLogin = true
-            console.log(state.adminLogin)
+            // console.log(state.adminLogin)
+        
+        },
+        GET_USER_INFO(state, value) {
+            state.userInfo = value.data
+            // console.log(value.data)
         },
         USER_LOGIN(state, value) {
             state.user = value
             state.isLogin = true
-            console.log(state.isLogin)
+            // console.log(state.isLogin)
         },
         USER_LOGOUT(state) {
             sessionStorage.clear()
@@ -93,7 +99,8 @@ export default new Vuex.Store({
         UPDATE_VREVIEW(state, value) {
             state
             console.log(value)
-        }
+        },
+
     },
     actions: {
         managerLogin({commit}, value) {
@@ -113,14 +120,34 @@ export default new Vuex.Store({
                 commit('MANAGER_LOGIN', admin)
                 sessionStorage.setItem("access-token", res.data["access-token"])
                 router.push({name: 'ManagerView'})
+            })
+        },
+        getUserInfo({ commit }, value) {
+            let params = null
+            if (value) { //들어오는 payload가 있다면
+                params = value //params는 payload로
+            }
+            const API_URL = `${REST_API}/jung/user/getinfo/` + params
+            console.log(API_URL)
+
+            axios({
+                url: API_URL,
+                method: 'GET',
+                params, //그걸 같이 넘겨줘
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                }
+            }).then((res) => {
+                console.log(res)
+                commit('GET_USER_INFO', res)
+                router.push('/user/mypage/' + params.userId)
             }).catch((err) => {
                 console.log(err)
             })
         },
-        userLogin({commit}, value) {
+        userLogin({ commit }, value) {
             let params = null
             let id = value.userId
-            console.log(value)
             if (value) { //들어오는 payload가 있다면
                 params = value //params는 payload로
             }
@@ -130,22 +157,22 @@ export default new Vuex.Store({
                 method: 'POST',
                 params, //그걸 같이 넘겨줘
             }).then((res) => {
-                // console.log(res)
                 commit('USER_LOGIN', id)
                 sessionStorage.setItem("access-token", res.data["access-token"])
-                router.push({name: 'home'})
+                router.push({ name: 'home' })
             }).catch((err) => {
                 console.log(err)
             })
         },
-        userLogout({commit}) {
-            
+        userLogout({ commit }) {
+
             const API_URL = `${REST_API}/jung/user`
             axios({
                 url: API_URL,
                 method: 'GET',
             }).then(() => {
                 commit('USER_LOGOUT')
+                router.push({ name: 'home' })
             }).catch((err) => {
                 console.log(err)
             })
