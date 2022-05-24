@@ -18,10 +18,10 @@
                 <v-container fill-height>
                   <v-row style="height: 400px;">
                     <v-col cols="4" v-for="(v,i) in p1" :key="i">
-                      <v-card class="mx-auto" max-width="360">
+                      <v-card >
                         <iframe
-                          width="355"
-                          height="220"
+                          width="328"
+                          height="200"
                           :src="'https://www.youtube.com/embed/'+v.videoId"
                           title="YouTube video player"
                           frameborder="0"
@@ -36,10 +36,9 @@
                         </v-card-text>
 
                         <v-card-actions>
-                          <v-btn>
-                            <router-link :to="'/review/video-review/'+v.videoId">리뷰</router-link>
-                          </v-btn>
-
+                          <router-link :to="'/review/video-review/'+v.videoId">
+                            <v-btn> 리뷰 </v-btn>
+                          </router-link>
                           <v-spacer></v-spacer>
 
                           <v-btn icon>
@@ -62,8 +61,8 @@
                     <v-col cols="4" v-for="(v,i) in p2" :key="i">
                       <v-card class="mx-auto" max-width="360">
                         <iframe
-                          width="355"
-                          height="220"
+                          width="328"
+                          height="200"
                           :src="'https://www.youtube.com/embed/'+v.videoId"
                           title="YouTube video player"
                           frameborder="0"
@@ -78,9 +77,9 @@
                         </v-card-text>
 
                         <v-card-actions>
-                          <v-btn>
-                            <router-link :to="'/review/video-review/'+v.videoId">리뷰</router-link>
-                          </v-btn>
+                          <router-link :to="'/review/video-review/'+v.videoId">
+                            <v-btn> 리뷰 </v-btn>
+                          </router-link>
 
                           <v-spacer></v-spacer>
 
@@ -104,8 +103,8 @@
                     <v-col cols="4" v-for="(v,i) in p3" :key="i">
                       <v-card class="mx-auto" max-width="360">
                         <iframe
-                          width="355"
-                          height="220"
+                          width="328"
+                          height="200"
                           :src="'https://www.youtube.com/embed/'+v.videoId"
                           title="YouTube video player"
                           frameborder="0"
@@ -120,9 +119,9 @@
                         </v-card-text>
 
                         <v-card-actions>
-                          <v-btn>
-                            <router-link :to="'/review/video-review/'+v.videoId">리뷰</router-link>
-                          </v-btn>
+                          <router-link :to="'/review/video-review/'+v.videoId">
+                            <v-btn> 리뷰 </v-btn>
+                          </router-link>
 
                           <v-spacer></v-spacer>
 
@@ -146,8 +145,8 @@
                     <v-col cols="4" v-for="(v,i) in p4" :key="i">
                       <v-card class="mx-auto" max-width="360">
                         <iframe
-                          width="355"
-                          height="220"
+                          width="328"
+                          height="200"
                           :src="'https://www.youtube.com/embed/'+v.videoId"
                           title="YouTube video player"
                           frameborder="0"
@@ -161,9 +160,9 @@
                           <div class="text-truncate">{{v.title}}</div>
                         </v-card-text>
                         <v-card-actions>
-                          <v-btn>
-                            <router-link :to="'/review/video-review/'+v.videoId">리뷰</router-link>
-                          </v-btn>
+                          <router-link :to="'/review/video-review/'+v.videoId">
+                            <v-btn> 리뷰 </v-btn>
+                          </router-link>
 
                           <v-spacer></v-spacer>
 
@@ -205,8 +204,8 @@
                     <v-col cols="4" v-for="(v,i) in a" :key="i">
                       <v-card class="mx-auto" max-width="360">
                         <iframe
-                          width="355"
-                          height="220"
+                          width="328"
+                          height="200"
                           :src="'https://www.youtube.com/embed/'+v.id.videoId"
                           title="YouTube video player"
                           frameborder="0"
@@ -221,9 +220,9 @@
                         </v-card-text>
 
                         <v-card-actions>
-                          <v-btn>
-                            <router-link :to="`/review/video-review/${v.id.videoId}`">리뷰</router-link>
-                          </v-btn>
+                          <router-link :to="'/review/video-review/'+v.id.videoId">
+                            <v-btn> 리뷰 </v-btn>
+                          </router-link>
 
                           <v-spacer></v-spacer>
 
@@ -247,8 +246,8 @@
                     <v-col cols="4" v-for="(v,i) in b" :key="i">
                       <v-card class="mx-auto" max-width="360">
                         <iframe
-                          width="355"
-                          height="220"
+                          width="328"
+                          height="200"
                           :src="'https://www.youtube.com/embed/'+v.id.videoId"
                           title="YouTube video player"
                           frameborder="0"
@@ -263,9 +262,9 @@
                         </v-card-text>
 
                         <v-card-actions>
-                          <v-btn>
-                            <router-link :to="`/review/video-review/${v.id.videoId}`">리뷰</router-link>
-                          </v-btn>
+                          <router-link :to="'/review/video-review/'+v.id.videoId">
+                            <v-btn> 리뷰 </v-btn>
+                          </router-link>
 
                           <v-spacer></v-spacer>
 
@@ -289,8 +288,8 @@
                     <v-col cols="4" v-for="(v,i) in c" :key="i">
                       <v-card class="mx-auto" max-width="360">
                         <iframe
-                          width="355"
-                          height="220"
+                          width="328"
+                          height="200"
                           :src="'https://www.youtube.com/embed/'+v.id.videoId"
                           title="YouTube video player"
                           frameborder="0"
@@ -305,9 +304,9 @@
                         </v-card-text>
 
                         <v-card-actions>
-                          <v-btn>
-                            <router-link :to="`/review/video-review/${v.id.videoId}`">리뷰</router-link>
-                          </v-btn>
+                         <router-link :to="'/review/video-review/'+v.id.videoId">
+                            <v-btn> 리뷰 </v-btn>
+                          </router-link>
 
                           <v-spacer></v-spacer>
 
@@ -331,8 +330,8 @@
                     <v-col cols="4" v-for="(v,i) in d" :key="i">
                       <v-card class="mx-auto" max-width="360">
                         <iframe
-                          width="355"
-                          height="220"
+                          width="328"
+                          height="200"
                           :src="'https://www.youtube.com/embed/'+v.id.videoId"
                           title="YouTube video player"
                           frameborder="0"
@@ -346,9 +345,9 @@
                           <div class="text-truncate">{{v.snippet.title}}</div>
                         </v-card-text>
                         <v-card-actions>
-                          <v-btn>
-                            <router-link :to="`/review/video-review/${v.id.videoId}`">리뷰</router-link>
-                          </v-btn>
+                          <router-link :to="'/review/video-review/'+v.id.videoId">
+                            <v-btn> 리뷰 </v-btn>
+                          </router-link>
 
                           <v-spacer></v-spacer>
 

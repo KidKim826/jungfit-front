@@ -57,7 +57,7 @@
     </div>
     <div id="app">
       <v-app id="inspire" >
-        <v-data-table :headers="headers" :items="reviews" :items-per-page="5" class="elevation-1">
+        <v-data-table :headers="headers" :items="selectedReview" :items-per-page="5" class="elevation-1">
           <template v-slot:[`item.reviewId`]="{ value }" >
             <router-link :to="'/review/video/'+value">
             <div class="text-truncate" style="max-width: 500px; max-height: 48px;">
@@ -105,24 +105,23 @@ export default {
         { text: "조회수", value: "viewCnt" },
         { text: "작성일자", value: "regDate" }
       ],
-      reviews: this.$store.state.selectedReview
     };
   },
   computed: {
-    ...mapState(["selectedVideo", "selectedReview"])
+    ...mapState(['selectedVideo', 'selectedReview'])
   },
   created() {
     const pathName = new URL(document.location).pathname.split("/");
     const vdoId = pathName[pathName.length - 1];
-    this.$store.dispatch("getVReviewVideo", vdoId);
     this.$store.dispatch("getVReviewList", vdoId);
+    this.$store.dispatch("getVReviewVideo", vdoId);
   },
   methods: {
     search() {
       const payload = {
         mode: this.mode,
         keyword: this.keyword,
-        videoId: this.reviews[0].videoId
+        videoId: this.selectedReview[0].videoId
       };
       console.log(this.mode)
       console.log(this.keyword)

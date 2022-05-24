@@ -61,8 +61,8 @@ export default new Vuex.Store({
             })
         },
         GET_VREVIEW_DETAIL(state, value) {
-            state.detailReview = [];
-            state.detailReview.push(value);
+            // state.detailReview = [];
+            state.detailReview = value;
             console.log(state.detailReview)
         },
         CREATE_VREVIEW(state, value) {
@@ -136,6 +136,7 @@ export default new Vuex.Store({
             }).then((res) => {
                 console.log(res)
                 commit('GET_VREVIEW_LIST', res.data)
+                    // router.push(`videoId`)
             }).catch((err) => {
                 console.log(err)
             })
