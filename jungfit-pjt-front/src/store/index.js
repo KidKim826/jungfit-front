@@ -182,7 +182,9 @@ export default new Vuex.Store({
                 console.log(err)
             })
         },
-        deleteVReview({ commit }, value)
+        deleteVReview({ commit }, value) {
+            
+        }
     },
     modules: {}
 })
