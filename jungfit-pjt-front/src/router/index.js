@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import LoginView from '@/views/LoginView.vue'
+import AdminView from '@/views/AdminView.vue'
 // import VideoView from '@/views/VideoView.vue'
 
 import VReviewView from '@/views/VReviewView.vue'
@@ -12,7 +13,8 @@ import VReviewCreate from '@/components/videos/VReviewCreate.vue'
 import VReviewUpdate from '@/components/videos/VReviewUpdate.vue'
 import MemberLogin from '@/components/login/MemberLogin.vue'
 import SignIn from '@/components/login/SignIn.vue'
-
+import ManagerLogin from '@/components/admin/ManagerLogin.vue'
+import ManagerView from '@/components/admin/ManagerAdmin.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -22,8 +24,8 @@ const routes = [
         component: HomeView
     },
     {
-        path: '/login',
-        name: 'login',
+        path: '/user',
+        name: 'user',
         component: LoginView,
         children: [
             {
@@ -37,6 +39,24 @@ const routes = [
                 name: "SignIn",
                 component: SignIn
             }
+        ]
+    },
+    {
+        path:'/admin',
+        name: 'AdminView',
+        component: AdminView,
+        children: [
+            {
+                path: "login",
+                name: "ManagerLogin",
+                component: ManagerLogin
+            },
+            {
+                path: "/manager",
+                name: "ManagerView",
+                component: ManagerView
+
+            },
         ]
     },
     {

@@ -28,9 +28,16 @@ export default new Vuex.Store({
         reviews: [],
         user: "",
         isLogin: false,
+        manager:"",
+        adminLogin: false,
     },
     getters: {},
     mutations: {
+        MANAGER_LOGIN(state, value) {
+            state.manager = value
+            state.adminLogin = true
+            console.log(state.adminLogin)
+        },
         USER_LOGIN(state, value) {
             state.user = value
             state.isLogin = true
@@ -40,6 +47,9 @@ export default new Vuex.Store({
             sessionStorage.clear()
             state.user = ""
             state.isLogin = false
+        },
+        USER_SIGN_IN(state) {
+            state
         },
         GET_YOUTUBE_LIST(state, value) {
             state.videos = value
@@ -86,6 +96,27 @@ export default new Vuex.Store({
         }
     },
     actions: {
+        managerLogin({commit}, value) {
+            let params = null
+            let admin = value.managerId
+            console.log(value)
+            if (value) { //들어오는 payload가 있다면
+                params = value //params는 payload로
+            }
+            const API_URL = `${REST_API}/admin/manager`
+            axios({
+                url: API_URL,
+                method: 'POST',
+                params, //그걸 같이 넘겨줘
+            }).then((res) => {
+                // console.log(res)
+                commit('MANAGER_LOGIN', admin)
+                sessionStorage.setItem("access-token", res.data["access-token"])
+                router.push({name: 'ManagerView'})
+            }).catch((err) => {
+                console.log(err)
+            })
+        },
         userLogin({commit}, value) {
             let params = null
             let id = value.userId
@@ -119,11 +150,29 @@ export default new Vuex.Store({
                 console.log(err)
             })
         },
+        userSignin({commit}, value) {
+            let params = null
+
+            if (value) { //들어오는 value가 있다면
+                params = value //params는 value로
+            }
+            const API_URL = `${REST_API}/jung/user/join`
+            axios({
+                url: API_URL,
+                method: 'POST',
+                params,
+            }).then(() => {
+                commit('USER_SIGN_IN')
+                router.push({name: 'home'})
+            }).catch((err) => {
+                console.log(err)
+            })
+        },
         getPartList({ commit }, value) {
             let params = null
 
-            if (value) { //들어오는 payload가 있다면
-                params = value //params는 payload로
+            if (value) { //들어오는 value가 있다면
+                params = value //params는 value로
             }
             const API_URL = `${REST_API}/video/list/part/` + params
             axios({
