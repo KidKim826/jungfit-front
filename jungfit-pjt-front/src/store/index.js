@@ -68,7 +68,10 @@ export default new Vuex.Store({
         CREATE_VREVIEW(state, value) {
             state.reviews.push(value)
         },
-
+        UPDATE_VREVIEW(state, value) {
+            state
+            console.log(value)
+        }
     },
     actions: {
         getPartList({ commit }, value) {
@@ -188,8 +191,6 @@ export default new Vuex.Store({
             if (value) {
                 params = value
             }
-            console.log(params.videoId)
-            console.log(params.reviewId)
             const API_URL = `${REST_API}/review/video/` + params.reviewId
             axios({
                 url: API_URL,
@@ -199,6 +200,25 @@ export default new Vuex.Store({
             }).catch((err) => {
                 console.log(err)
                 console.log('delete에러')
+
+            })
+        },
+        updateVReview({ commit }, value) {
+            let params = null
+            if (value) {
+                params = value
+            }
+            const API_URL = `${REST_API}/review/video/` + params.reviewId
+
+            axios({
+                url: API_URL,
+                method: 'PUT',
+                params
+            }).then(() => {
+                commit('UPDATE_VREVIEW', params)
+                router.push("/review/video-review/" + params.videoId)
+            }).catch((err) => {
+                console.log(err)
             })
         }
     },

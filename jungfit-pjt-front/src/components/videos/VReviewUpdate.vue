@@ -1,33 +1,101 @@
 <template>
-   <v-dialog max-width="600px">
-      <v-btn flat slot="activator" class="success">Add new project</v-btn>
-      <v-card>
-         <v-card-title>
-         <h2>add a title here</h2>
-         </v-card-title>
-         <v-card-text>
-         <v-form class="px-3">
-            <v-text-field v-model="title" prepend-icon="folder" label="Title"></v-text-field>
-            <v-ptextarea label="Information" v-model="content" prepend-icon="edit" />
-            <v-btn flat class="right sucess mx-0 mt-3" @click="submit">add review</v-btn>
-         </v-form>
-         </v-card-text>
-      </v-card>
-   </v-dialog>
+  <div>
+  <b-card bg-variant="light">
+    <b-form-group
+      label-cols-lg="3"
+      label="리뷰 수정하기"
+      label-size="lg"
+      label-class="font-weight-bold pt-0"
+      class="mb-0"
+    >
+      <b-form-group
+        label="리뷰 제목:"
+        label-for="title"
+        label-cols-sm="3"
+        label-align-sm="right"
+      >
+        <b-form-input id="title" v-model="detailReview.title"></b-form-input>
+      </b-form-group>
+
+      <b-form-group
+        label="작성자:"
+        label-for="userId"
+        label-cols-sm="3"
+        label-align-sm="right"
+      >
+        <b-form-input id="userId" v-model="detailReview.userId" disabled></b-form-input>
+      </b-form-group>
+
+      <b-form-group
+        label="리뷰 내용:"
+        label-for="content"
+        label-cols-sm="3"
+        label-align-sm="right"
+      >
+        <b-form-textarea id="content" style="height:150px" v-model="detailReview.content"></b-form-textarea>
+      </b-form-group>
+
+      <!-- <b-form-group
+        label="Ship via:"
+        label-cols-sm="3"
+        label-align-sm="right"
+        class="mb-0"
+        v-slot="{ ariaDescribedby }"
+      >
+        <b-form-radio-group
+          class="pt-2"
+          :options="['Air', 'Courier', 'Mail']"
+          :aria-describedby="ariaDescribedby"
+        ></b-form-radio-group>
+      </b-form-group> -->
+
+
+    </b-form-group> 
+    <div>
+    
+    <b-button variant="outline-dark" @click="back">취소</b-button>
+    <b-button variant="outline-primary" @click="update">수정</b-button>
+    <b-button variant="outline-danger" @click="del">삭제</b-button>
+    </div>
+  </b-card>
+</div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
+   computed:{
+    ...mapState(['selectedVideo', 'detailReview'])
+  },
    data() {
       return {
-         title: '',
-         content: ''
+         
       }
+   },
+   created() {
+     console.log(this.detailReview) 
    },
    methods: {
       submit() {
          console.log(this.title, this.content)
+      },
+      back() {
+        this.$router.push(`/review/video/`+this.detailReview.reviewId) 
+      },
+      update(){
+         const  review={
+        reviewId: this.detailReview.reviewId,
+        videoId: this.detailReview.videoId,
+        userId:this.detailReview.userId,
+        title: this.detailReview.title,
+        content:this.detailReview.content,
       }
-   }
+      this.$store.dispatch('updateVReview', review)
+      },
+      del() {
+
+      }
+   },
+
 }
 </script>

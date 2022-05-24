@@ -8,7 +8,7 @@ import VideoList from '@/components/videos/VideoList.vue'
 import VReviewList from '@/components/videos/VReviewList.vue'
 import VReviewDetail from '@/components/videos/VReviewDetail.vue'
 import VReviewCreate from '@/components/videos/VReviewCreate.vue'
-
+import VReviewUpdate from '@/components/videos/VReviewUpdate.vue'
 Vue.use(VueRouter)
 
 const routes = [{
@@ -34,18 +34,27 @@ const routes = [{
         name: 'review',
         component: VReviewView,
         children: [{
-            path: "video-review/:id",
-            name: "VReviewList",
-            component: VReviewList
-        }, {
-            path: "video/:reviewId",
-            name: "VReviewDetail",
-            component: VReviewDetail
-        }, {
-            path: "video/create/:id",
-            name: "VReviewCreate",
-            component: VReviewCreate
-        }, ]
+                path: "video-review/:id",
+                name: "VReviewList",
+                component: VReviewList
+            },
+            {
+                path: "video/:reviewId",
+                name: "VReviewDetail",
+                component: VReviewDetail
+            },
+            {
+                path: "video/create/:id",
+                name: "VReviewCreate",
+                component: VReviewCreate
+            },
+            {
+                path: "video/modify/:id",
+                name: "VReviewUpdate",
+                component: VReviewUpdate
+            },
+
+        ]
     }
 ]
 
