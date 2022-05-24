@@ -67,7 +67,7 @@ export default new Vuex.Store({
         },
         CREATE_VREVIEW(state, value) {
             state.reviews.push(value)
-        }
+        },
 
     },
     actions: {
@@ -182,7 +182,25 @@ export default new Vuex.Store({
                 console.log(err)
             })
         },
-        deleteVReview({ commit }, value)
+        deleteVReview(context, value) {
+            context //버림
+            let params = null
+            if (value) {
+                params = value
+            }
+            console.log(params.videoId)
+            console.log(params.reviewId)
+            const API_URL = `${REST_API}/review/video/` + params.reviewId
+            axios({
+                url: API_URL,
+                method: 'DELETE',
+            }).then(() => {
+                router.push("/review/video-review/" + params.videoId)
+            }).catch((err) => {
+                console.log(err)
+                console.log('delete에러')
+            })
+        }
     },
     modules: {}
 })

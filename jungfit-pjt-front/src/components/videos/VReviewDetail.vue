@@ -72,10 +72,10 @@ export default {
   },
   methods:{
     back(){
-      this.$router.push(`/review/video-review/`+this.detatilReview.videoId)    
+      this.$router.push(`/review/video-review/`+this.detailReview.videoId)    
     },
     del(){
-      this.$store.dispatch('deleteVReview',this.detatilReview.reviewId)
+      this.$store.dispatch('deleteVReview',this.detailReview)
     },
 
   }
