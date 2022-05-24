@@ -164,20 +164,25 @@ export default new Vuex.Store({
                 console.log(err)
             })
         },
-        createVReview({ commit }, vreview) {
+        createVReview({ commit }, value) {
+            let params = null
+            if (value) {
+                params = value
+            }
             const API_URL = `${REST_API}/review/video/`
+
             axios({
                 url: API_URL,
                 method: 'POST',
-                params: vreview,
-            }).then((res) => {
-                commit('CREATE_VREVIEW', res)
-                    //여기,,,
-                router.push("/review/video/" + res.videoId)
+                params
+            }).then(() => {
+                commit('CREATE_VREVIEW', params)
+                router.push("/review/video-review/" + params.videoId)
             }).catch((err) => {
                 console.log(err)
             })
-        }
+        },
+        deleteVReview({ commit }, value)
     },
     modules: {}
 })
