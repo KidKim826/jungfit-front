@@ -26,9 +26,21 @@ export default new Vuex.Store({
         detailReview: [],
         newVReview: [],
         reviews: [],
+        user: "",
+        isLogin: false,
     },
     getters: {},
     mutations: {
+        USER_LOGIN(state, value) {
+            state.user = value
+            state.isLogin = true
+            console.log(state.isLogin)
+        },
+        USER_LOGOUT(state) {
+            sessionStorage.clear()
+            state.user = ""
+            state.isLogin = false
+        },
         GET_YOUTUBE_LIST(state, value) {
             state.videos = value
             state.a = [value[0], value[1], value[2]]
@@ -74,6 +86,39 @@ export default new Vuex.Store({
         }
     },
     actions: {
+        userLogin({commit}, value) {
+            let params = null
+            let id = value.userId
+            console.log(value)
+            if (value) { //들어오는 payload가 있다면
+                params = value //params는 payload로
+            }
+            const API_URL = `${REST_API}/jung/user`
+            axios({
+                url: API_URL,
+                method: 'POST',
+                params, //그걸 같이 넘겨줘
+            }).then((res) => {
+                // console.log(res)
+                commit('USER_LOGIN', id)
+                sessionStorage.setItem("access-token", res.data["access-token"])
+                router.push({name: 'home'})
+            }).catch((err) => {
+                console.log(err)
+            })
+        },
+        userLogout({commit}) {
+            
+            const API_URL = `${REST_API}/jung/user`
+            axios({
+                url: API_URL,
+                method: 'GET',
+            }).then(() => {
+                commit('USER_LOGOUT')
+            }).catch((err) => {
+                console.log(err)
+            })
+        },
         getPartList({ commit }, value) {
             let params = null
 

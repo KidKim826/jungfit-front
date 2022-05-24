@@ -10,15 +10,22 @@
       >
         <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
         <v-toolbar-title>jungfit</v-toolbar-title>
-        <v-spacer> </v-spacer>
-        <router-link :to="{name:'videoList'}">영상보기 </router-link>        
+        <v-spacer></v-spacer>
+           <router-link :to="{name:'videoList'}">영상보기 </router-link>     
         
-        <v-spacer> </v-spacer>
-        <v-btn flat color="white">
-          <span>
-          <router-link :to="{name:'login'}">로그인 </router-link>
-          </span>
-        </v-btn>
+        <v-spacer></v-spacer>
+        <div v-if="isLogin">
+          {{user}}님 환영합니다!
+          <v-btn flat  @click="LogOut"><span>로그아웃</span></v-btn>
+        </div>
+        <div v-else>
+          <router-link :to="'/login/loginform'">
+          <v-btn flat>
+            <span>로그인</span>
+          </v-btn>
+          </router-link>
+        </div>
+        
         
       </v-app-bar>
   </div>
@@ -33,8 +40,8 @@
             <v-avatar size="100">
               <img src="logo.png" alt="내프로필사진입니다.">
             </v-avatar>
-            <p class="white--text subheading mt-1">
-              전희정
+            <p class="white--text subheading mt-1" v-if="isLogin">
+              {{user}}
             </p>
           </v-flex>
         </v-layout>
@@ -58,8 +65,9 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
- 
+  
   data() {
     return {
     drawer: false,
@@ -71,7 +79,15 @@ export default {
       // {icon: 'email', text: 'mail-box', route: '/'},
     ]
     }
-  }
+  },
+  computed: {
+    ...mapState(["isLogin", "user"])
+  },
+  methods: {
+    LogOut() {
+       this.$store.dispatch("userLogout");
+    }
+  },
 
 }
 </script>
