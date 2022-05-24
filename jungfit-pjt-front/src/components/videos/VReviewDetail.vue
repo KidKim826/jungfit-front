@@ -15,6 +15,7 @@
   
   
       <v-card-text class="text--primary">
+        <div>충돌 테스트</div>
         <div>{{detailReview.userId}}</div>
         <div>{{detailReview.regDate}}</div>
         <div>{{detailReview.viewCnt}}</div>
