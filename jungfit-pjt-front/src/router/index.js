@@ -12,21 +12,20 @@ import VReviewCreate from '@/components/videos/VReviewCreate.vue'
 import VReviewUpdate from '@/components/videos/VReviewUpdate.vue'
 import MemberLogin from '@/components/login/MemberLogin.vue'
 import SignIn from '@/components/login/SignIn.vue'
+import MyPage from '@/components/login/MyPage.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
-    {
+const routes = [{
         path: '/',
         name: 'home',
         component: HomeView
     },
     {
-        path: '/login',
-        name: 'login',
+        path: '/user',
+        name: 'user',
         component: LoginView,
-        children: [
-            {
+        children: [{
                 path: "loginform",
                 name: "MemberLogin",
                 component: MemberLogin
@@ -36,6 +35,11 @@ const routes = [
                 path: "signinform",
                 name: "SignIn",
                 component: SignIn
+            },
+            {
+                path: "mypage/:userid",
+                name: "MyPage",
+                component: MyPage
             }
         ]
     },
@@ -52,13 +56,12 @@ const routes = [
             //     name: "VReviewDetail",
             //     component: VReviewDetail
             // }]
-    }, 
+    },
     {
         path: '/review',
         name: 'review',
         component: VReviewView,
-        children: [
-            {
+        children: [{
                 path: "video-review/:id",
                 name: "VReviewList",
                 component: VReviewList
