@@ -33,6 +33,7 @@
         <v-btn
           color="orange"
           text
+          @click="modify"
         >
           수정
         </v-btn >
@@ -68,14 +69,18 @@ export default {
     const pathName = new URL(document.location).pathname.split("/");
     const reviewId = pathName[pathName.length - 1];
     this.$store.dispatch("getVReviewDetail", reviewId);
-    console.log(reviewId)
+    // console.log(reviewId)
   },
   methods:{
     back(){
-      this.$router.push(`/review/video-review/`+this.detatilReview.videoId)    
+      this.$router.push(`/review/video-review/`+this.detailReview.videoId) 
+    },
+    modify() {
+      this.$router.push(`/review/video/modify/`+this.detailReview.reviewId)  
+      
     },
     del(){
-      this.$store.dispatch('deleteVReview',this.detatilReview.reviewId)
+      this.$store.dispatch('deleteVReview',this.detailReview.reviewId)
     },
 
   }
