@@ -87,7 +87,8 @@ export default {
         content:this.content,
       }
       this.$store.dispatch('createVReview',vreview)
-    }
+    },
+    
   },
 }
 </script>

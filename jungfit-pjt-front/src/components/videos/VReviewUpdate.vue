@@ -92,9 +92,9 @@ export default {
       }
       this.$store.dispatch('updateVReview', review)
       },
-      del() {
-
-      }
+      del(){
+      this.$store.dispatch('deleteVReview',this.detailReview)
+    },
    },
 
 }
