@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app">
     <header-nav></header-nav>
     <router-view/>
   </div>
@@ -18,4 +18,10 @@ export default {
 .v-application--wrap {
   min-height: unset;
 }
+
+.app{
+  background-color: black !important;
+}
+
+
 </style>
