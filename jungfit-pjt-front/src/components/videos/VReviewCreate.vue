@@ -1,4 +1,5 @@
 <template>
+   <v-container>
  <div>
   <b-card bg-variant="light">
     <b-form-group
@@ -23,7 +24,7 @@
         label-cols-sm="3"
         label-align-sm="right"
       >
-        <b-form-input id="userId" v-model="userId" disabled></b-form-input>
+      <b-form-input id="userId" v-model="user" disabled></b-form-input>
       </b-form-group>
 
       <b-form-group
@@ -58,20 +59,20 @@
     </div>
   </b-card>
 </div>
+  </v-container>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 export default {
   computed:{
-    ...mapState(['selectedVideo'])
+    ...mapState(['selectedVideo','user'])
   },
   data(){
     return {
       videoId:"",
       title:"",
       content:"",
-      userId:"sumi",
       }
   },
   methods:{
@@ -82,11 +83,12 @@ export default {
       const  vreview={
         reviewId: 0,
         videoId: this.selectedVideo[0].videoId,
-        userId:this.userId,
+        userId:this.user,
         title: this.title,
         content:this.content,
       }
       this.$store.dispatch('createVReview',vreview)
+      this.$router.push(`/review/video-review/`+this.selectedVideo[0].videoId) 
     },
     
   },

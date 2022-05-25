@@ -32,7 +32,7 @@ export default new Vuex.Store({
         adminLogin: false,
         userInfo: [], // 유저 객체
         userReviews: [],
-        mails:[],
+        mails: [],
         mail: [],
         followers: [],
     },
@@ -70,7 +70,7 @@ export default new Vuex.Store({
         GET_USER_MESSAGES(state, value) {
             // console.log(value)
             state.mails = value
-            // console.log(state.mails)
+                // console.log(state.mails)
         },
         READ_MAIL(state, value) {
             state.mail = value
@@ -95,7 +95,7 @@ export default new Vuex.Store({
             state.d = [value[9], value[10], value[11]]
         },
         GET_PART_LIST(state, value) {
-            
+
             state.partVideos = value
             state.p1 = [value[0], value[1], value[2]]
             state.p2 = [value[3], value[4], value[5]]
@@ -243,13 +243,13 @@ export default new Vuex.Store({
                 console.log(err)
             })
         },
-        readMail({commit}, value) {
+        readMail({ commit }, value) {
             // console.log(value)
             let params = null
             if (value) { //들어오는 payload가 있다면
                 params = value //params는 payload로
             }
-            const API_URL = `${REST_API}/mailbox/message/`+params.no
+            const API_URL = `${REST_API}/mailbox/message/` + params.no
 
             axios({
                 url: API_URL,
@@ -261,19 +261,19 @@ export default new Vuex.Store({
             }).then((res) => {
                 console.log(res)
                 commit('READ_MAIL', value)
-                router.push({name: 'MailDetail'})
+                router.push({ name: 'MailDetail' })
             }).catch((err) => {
                 console.log(err)
             })
         },
-        sendEmail({commit}, value) {
+        sendEmail({ commit }, value) {
             // console.log(value)
             let params = null
             if (value) { //들어오는 payload가 있다면
                 params = value //params는 payload로
             }
             const API_URL = `${REST_API}/mailbox/message/send`
-            // console.log(API_URL)
+                // console.log(API_URL)
 
             axios({
                 url: API_URL,
@@ -285,13 +285,13 @@ export default new Vuex.Store({
             }).then((res) => {
                 console.log(res)
                 commit('SEND_EMAIL')
-                router.push({name: 'MyPage'})
+                router.push({ name: 'MyPage' })
             }).catch((err) => {
                 console.log(err)
             })
 
         },
-        userSignin({commit}, value) {
+        userSignin({ commit }, value) {
             let params = null
 
             if (value) { //들어오는 value가 있다면
@@ -309,13 +309,13 @@ export default new Vuex.Store({
                 console.log(err)
             })
         },
-        getUserReviews({commit}, value) {
+        getUserReviews({ commit }, value) {
             let params = null
             if (value) { //들어오는 value가 있다면
                 params = value //params는 value로
             }
-            const API_URL = `${REST_API}/review/video-review/loginuser/`+params
-            // console.log(API_URL)
+            const API_URL = `${REST_API}/review/video-review/loginuser/` + params
+                // console.log(API_URL)
             axios({
                 url: API_URL,
                 method: 'GET',
@@ -326,7 +326,7 @@ export default new Vuex.Store({
             }).then((res) => {
                 console.log(res)
                 commit('GET_USER_REVIEWS', res.data)
-               
+
             }).catch((err) => {
                 console.log(err)
             })
@@ -366,6 +366,9 @@ export default new Vuex.Store({
                 url: API_URL,
                 method: 'GET',
                 params, //그걸 같이 넘겨줘
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                }
             }).then((res) => {
                 commit('GET_PART_LIST', res.data)
             }).catch((err) => {
@@ -443,6 +446,9 @@ export default new Vuex.Store({
                 url: API_URL,
                 method: 'GET',
                 params, //그걸 같이 넘겨줘
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                }
             }).then((res) => {
                 // console.log(res)
                 if (res.data)
@@ -452,6 +458,7 @@ export default new Vuex.Store({
             })
         },
         createVReview({ commit }, value) {
+            console.log(value)
             let params = null
             if (value) {
                 params = value
@@ -461,7 +468,10 @@ export default new Vuex.Store({
             axios({
                 url: API_URL,
                 method: 'POST',
-                params
+                params,
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                }
             }).then(() => {
                 commit('CREATE_VREVIEW', params)
                 router.push("/review/video-review/" + params.videoId)

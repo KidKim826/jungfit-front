@@ -1,4 +1,5 @@
 <template>
+<v-container>
   <div>
   <b-card bg-variant="light">
     <b-form-group
@@ -59,6 +60,7 @@
     </div>
   </b-card>
 </div>
+</v-container>
 </template>
 
 <script>

@@ -1,21 +1,22 @@
 <template>
   <div>
-    <br />
-    <h3>부위 별 운동 영상 TOP12</h3>
-    <div class="text-center">
-      <v-btn @click="searchPart('전신')" class="ma-2" outlined color="indigo">전신</v-btn>
+    <v-container>
+      <br />
+      <h3>부위 별 운동 영상 TOP12</h3>
+      <div class="text-center">
+      <v-btn @click="searchPart('전신')" class="ma-2" outlined color="indigo">전신</v-btn> 
       <v-btn @click="searchPart('상체')" class="ma-2" outlined color="indigo">상체</v-btn>
       <v-btn @click="searchPart('하체')" class="ma-2" outlined color="indigo">하체</v-btn>
       <v-btn @click="searchPart('복부')" class="ma-2" outlined color="indigo">복부</v-btn>
-    </div>
+      </div>
 
-    <v-app id="inspire">
-      <v-container>
+      <v-app id="inspire">
+      <div>
         <v-row>
           <v-col cols="12">
             <v-carousel cycle height="400" hide-delimiter-background show-arrows-on-hover>
               <v-carousel-item>
-                <v-container fill-height>
+                <div fill-height>
                   <v-row style="height: 400px;">
                     <v-col cols="4" v-for="(v,i) in p1" :key="i">
                       <v-card >
@@ -52,11 +53,11 @@
                       </v-card>
                     </v-col>
                   </v-row>
-                </v-container>
+                </div>
               </v-carousel-item>
 
               <v-carousel-item>
-                <v-container fill-height>
+                <div fill-height>
                   <v-row style="height: 400px;">
                     <v-col cols="4" v-for="(v,i) in p2" :key="i">
                       <v-card class="mx-auto" max-width="360">
@@ -94,11 +95,11 @@
                       </v-card>
                     </v-col>
                   </v-row>
-                </v-container>
+                </div>
               </v-carousel-item>
 
               <v-carousel-item>
-                <v-container fill-height>
+                <div fill-height>
                   <v-row style="height: 400px;">
                     <v-col cols="4" v-for="(v,i) in p3" :key="i">
                       <v-card class="mx-auto" max-width="360">
@@ -136,11 +137,11 @@
                       </v-card>
                     </v-col>
                   </v-row>
-                </v-container>
+                </div>
               </v-carousel-item>
 
               <v-carousel-item>
-                <v-container fill-height>
+                <div fill-height>
                   <v-row style="height: 400px;">
                     <v-col cols="4" v-for="(v,i) in p4" :key="i">
                       <v-card class="mx-auto" max-width="360">
@@ -177,14 +178,13 @@
                       </v-card>
                     </v-col>
                   </v-row>
-                </v-container>
+                </div>
               </v-carousel-item>
             </v-carousel>
           </v-col>
         </v-row>
-      </v-container>
-    </v-app>
-
+      </div>
+      </v-app>
     <br />
     <div class="text-center">
       <v-btn @click="search('gymjongkook')" class="ma-2" outlined color="indigo">GYMJONGKOOK</v-btn>
@@ -192,14 +192,13 @@
       <v-btn @click="search('토르')" class="ma-2" outlined color="indigo">THOR</v-btn>
       <v-btn @click="search('비실이')" class="ma-2" outlined color="indigo">BISIRI</v-btn>
     </div>
-
-    <v-app id="inspire">
-      <v-container>
+      <v-app id="inspire">
+      <div>
         <v-row>
           <v-col cols="12">
             <v-carousel cycle height="400" hide-delimiter-background show-arrows-on-hover>
               <v-carousel-item>
-                <v-container fill-height>
+                <div fill-height>
                   <v-row style="height: 400px;">
                     <v-col cols="4" v-for="(v,i) in a" :key="i">
                       <v-card class="mx-auto" max-width="360">
@@ -237,11 +236,11 @@
                       </v-card>
                     </v-col>
                   </v-row>
-                </v-container>
+                </div>
               </v-carousel-item>
 
               <v-carousel-item>
-                <v-container fill-height>
+                <div fill-height>
                   <v-row style="height: 400px;">
                     <v-col cols="4" v-for="(v,i) in b" :key="i">
                       <v-card class="mx-auto" max-width="360">
@@ -279,11 +278,11 @@
                       </v-card>
                     </v-col>
                   </v-row>
-                </v-container>
+                </div>
               </v-carousel-item>
 
               <v-carousel-item>
-                <v-container fill-height>
+                <div fill-height>
                   <v-row style="height: 400px;">
                     <v-col cols="4" v-for="(v,i) in c" :key="i">
                       <v-card class="mx-auto" max-width="360">
@@ -321,11 +320,11 @@
                       </v-card>
                     </v-col>
                   </v-row>
-                </v-container>
+                </div>
               </v-carousel-item>
 
               <v-carousel-item>
-                <v-container fill-height>
+                <div fill-height>
                   <v-row style="height: 400px;">
                     <v-col cols="4" v-for="(v,i) in d" :key="i">
                       <v-card class="mx-auto" max-width="360">
@@ -362,14 +361,14 @@
                       </v-card>
                     </v-col>
                   </v-row>
-                </v-container>
+                </div>
               </v-carousel-item>
             </v-carousel>
           </v-col>
         </v-row>
-      </v-container>
-    </v-app>
-
+      </div>
+      </v-app>
+    </v-container>
   </div>
 </template>
 

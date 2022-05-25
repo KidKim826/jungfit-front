@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <v-container> -->
+    <v-container>
     <div>
       <h2>비디오 리뷰 리스트</h2>
     </div>
@@ -66,6 +66,7 @@
         </v-data-table>
       </v-app>
     </div>
+    </v-container>
   </div>
 </template>
 

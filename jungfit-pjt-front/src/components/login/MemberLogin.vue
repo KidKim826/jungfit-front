@@ -12,7 +12,7 @@
             v-model="userId"
             label="아이디를 입력하세요"
             ></v-text-field>
-            <v-text-field
+            <v-text-field @keyup.enter="login"
             v-model="password"
             type="password"
             label="패스워드를 입력하세요"
@@ -20,7 +20,7 @@
           </div>
            <div align="center" justify="space-around">
             <v-btn @click="login" class="mr-4 mb-4">로그인</v-btn>
-            <v-btn :to="'signinform'" class="mr-4 mb-4">회원가입</v-btn>
+            <v-btn :to="'signinform'" style="text-decoration:none;" class="mr-4 mb-4">회원가입</v-btn>
            </div>
         </v-card>
       </v-flex>
@@ -53,4 +53,5 @@ export default {
 </script>
 
 <style>
+
 </style>

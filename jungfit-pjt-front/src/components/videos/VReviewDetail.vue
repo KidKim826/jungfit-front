@@ -1,5 +1,7 @@
 <template>
+   <v-container>
    <div id="app">
+     
     <h2> &#10004; 리뷰 상세보기 </h2>
     <div id="app">
   <v-app id="inspire">
@@ -49,6 +51,7 @@
   </v-app>
 </div>
 </div>
+</v-container>
 </template>
 
 <script>
