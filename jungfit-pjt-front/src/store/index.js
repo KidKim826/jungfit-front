@@ -28,19 +28,19 @@ export default new Vuex.Store({
         reviews: [],
         user: "", // 유저 아이디
         isLogin: false,
-        manager:"",
+        manager: "",
         adminLogin: false,
         userInfo: [], // 유저 객체
         userReviews: [],
-        mails:[],
+        mails: [],
     },
     getters: {},
     mutations: {
         MANAGER_LOGIN(state, value) {
             state.manager = value
             state.adminLogin = true
-            // console.log(state.adminLogin)
-        
+                // console.log(state.adminLogin)
+
         },
         MANAGER_LOGOUT(state) {
             sessionStorage.clear()
@@ -49,13 +49,13 @@ export default new Vuex.Store({
         },
         GET_USER_INFO(state, value) {
             state.userInfo = value.data
-            // console.log(value.data)
+                // console.log(value.data)
         },
         USER_LOGIN(state, value) {
             console.log(value)
             state.user = value
             state.isLogin = true
-            // console.log(state.isLogin)
+                // console.log(state.isLogin)
         },
         USER_LOGOUT(state) {
             sessionStorage.clear()
@@ -114,7 +114,7 @@ export default new Vuex.Store({
 
     },
     actions: {
-        managerLogin({commit}, value) {
+        managerLogin({ commit }, value) {
             let params = null
             let admin = value.managerId
             console.log(value)
@@ -130,10 +130,10 @@ export default new Vuex.Store({
                 // console.log(res)
                 commit('MANAGER_LOGIN', admin)
                 sessionStorage.setItem("access-token", res.data["access-token"])
-                router.push({name: 'ManagerView'})
+                router.push({ name: 'ManagerView' })
             })
         },
-        managerLogout({commit}) {
+        managerLogout({ commit }) {
             const API_URL = `${REST_API}/admin/manager`
             axios({
                 url: API_URL,
@@ -163,7 +163,7 @@ export default new Vuex.Store({
             }).then((res) => {
                 console.log(res)
                 commit('GET_USER_INFO', res)
-                router.push('/user/mypage/' + params.userId)
+                    // router.push('/user/mypage/' + params.userId)
             }).catch((err) => {
                 console.log(err)
             })
@@ -206,7 +206,7 @@ export default new Vuex.Store({
             if (value) { //들어오는 payload가 있다면
                 params = value //params는 payload로
             }
-            const API_URL = `${REST_API}/mailbox/message/list/`+params
+            const API_URL = `${REST_API}/mailbox/message/list/` + params
             console.log(API_URL)
 
             axios({
@@ -223,7 +223,7 @@ export default new Vuex.Store({
                 console.log(err)
             })
         },
-        userSignin({commit}, value) {
+        userSignin({ commit }, value) {
             let params = null
 
             if (value) { //들어오는 value가 있다면
@@ -236,7 +236,7 @@ export default new Vuex.Store({
                 params,
             }).then(() => {
                 commit('USER_SIGN_IN')
-                router.push({name: 'home'})
+                router.push({ name: 'home' })
             }).catch((err) => {
                 console.log(err)
             })
