@@ -89,7 +89,7 @@
         </v-card>
       </v-col>
         <v-col cols="12" lg="4">
-        <v-card>
+        <!-- <v-card>
           <v-card-text>
             <h3 class="title blue-grey--text text--darken-2 font-weight-regular">My reviews</h3>
             <v-list two-line>
@@ -116,7 +116,7 @@
               </v-list-item-group>
             </v-list>
           </v-card-text>
-        </v-card>
+        </v-card> -->
       </v-col>
     </v-row>
   </v-container>
