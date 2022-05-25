@@ -20,8 +20,8 @@
                     <v-col cols="4" v-for="(v,i) in p1" :key="i">
                       <v-card >
                         <iframe
-                          width="328"
-                          height="200"
+                          width="338"
+                          height="210"
                           :src="'https://www.youtube.com/embed/'+v.videoId"
                           title="YouTube video player"
                           frameborder="0"
@@ -61,8 +61,8 @@
                     <v-col cols="4" v-for="(v,i) in p2" :key="i">
                       <v-card class="mx-auto" max-width="360">
                         <iframe
-                          width="328"
-                          height="200"
+                          width="338"
+                          height="210"
                           :src="'https://www.youtube.com/embed/'+v.videoId"
                           title="YouTube video player"
                           frameborder="0"
@@ -103,8 +103,8 @@
                     <v-col cols="4" v-for="(v,i) in p3" :key="i">
                       <v-card class="mx-auto" max-width="360">
                         <iframe
-                          width="328"
-                          height="200"
+                          width="338"
+                          height="210"
                           :src="'https://www.youtube.com/embed/'+v.videoId"
                           title="YouTube video player"
                           frameborder="0"
@@ -145,8 +145,8 @@
                     <v-col cols="4" v-for="(v,i) in p4" :key="i">
                       <v-card class="mx-auto" max-width="360">
                         <iframe
-                          width="328"
-                          height="200"
+                          width="338"
+                          height="210"
                           :src="'https://www.youtube.com/embed/'+v.videoId"
                           title="YouTube video player"
                           frameborder="0"
@@ -204,8 +204,8 @@
                     <v-col cols="4" v-for="(v,i) in a" :key="i">
                       <v-card class="mx-auto" max-width="360">
                         <iframe
-                          width="328"
-                          height="200"
+                          width="338"
+                          height="210"
                           :src="'https://www.youtube.com/embed/'+v.id.videoId"
                           title="YouTube video player"
                           frameborder="0"
@@ -246,8 +246,8 @@
                     <v-col cols="4" v-for="(v,i) in b" :key="i">
                       <v-card class="mx-auto" max-width="360">
                         <iframe
-                          width="328"
-                          height="200"
+                          width="338"
+                          height="210"
                           :src="'https://www.youtube.com/embed/'+v.id.videoId"
                           title="YouTube video player"
                           frameborder="0"
@@ -288,8 +288,8 @@
                     <v-col cols="4" v-for="(v,i) in c" :key="i">
                       <v-card class="mx-auto" max-width="360">
                         <iframe
-                          width="328"
-                          height="200"
+                          width="338"
+                          height="210"
                           :src="'https://www.youtube.com/embed/'+v.id.videoId"
                           title="YouTube video player"
                           frameborder="0"
@@ -330,8 +330,8 @@
                     <v-col cols="4" v-for="(v,i) in d" :key="i">
                       <v-card class="mx-auto" max-width="360">
                         <iframe
-                          width="328"
-                          height="200"
+                          width="338"
+                          height="210"
                           :src="'https://www.youtube.com/embed/'+v.id.videoId"
                           title="YouTube video player"
                           frameborder="0"

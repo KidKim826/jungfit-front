@@ -33,6 +33,7 @@ export default new Vuex.Store({
         userInfo: [], // 유저 객체
         userReviews: [],
         mails:[],
+        mail: [],
     },
     getters: {},
     mutations: {
@@ -66,7 +67,18 @@ export default new Vuex.Store({
             state
         },
         GET_USER_MESSAGES(state, value) {
+            // console.log(value)
             state.mails = value
+            // console.log(state.mails)
+        },
+        READ_MAIL(state, value) {
+            state.mail = value
+        },
+        SEND_EMAIL(state) {
+            state
+        },
+        GET_USER_REVIEWS(state, value) {
+            state.userReviews = value
         },
         GET_YOUTUBE_LIST(state, value) {
             state.videos = value
@@ -76,6 +88,7 @@ export default new Vuex.Store({
             state.d = [value[9], value[10], value[11]]
         },
         GET_PART_LIST(state, value) {
+            
             state.partVideos = value
             state.p1 = [value[0], value[1], value[2]]
             state.p2 = [value[3], value[4], value[5]]
@@ -163,7 +176,7 @@ export default new Vuex.Store({
             }).then((res) => {
                 console.log(res)
                 commit('GET_USER_INFO', res)
-                router.push('/user/mypage/' + params.userId)
+                // router.push('/user/mypage/' + params.userId)
             }).catch((err) => {
                 console.log(err)
             })
@@ -218,10 +231,58 @@ export default new Vuex.Store({
                 }
             }).then((res) => {
                 console.log(res)
-                commit('GET_USER_MESSAGES', res)
+                commit('GET_USER_MESSAGES', res.data)
             }).catch((err) => {
                 console.log(err)
             })
+        },
+        readMail({commit}, value) {
+            // console.log(value)
+            let params = null
+            if (value) { //들어오는 payload가 있다면
+                params = value //params는 payload로
+            }
+            const API_URL = `${REST_API}/mailbox/message/`+params.no
+
+            axios({
+                url: API_URL,
+                method: 'GET',
+                params, //그걸 같이 넘겨줘
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                }
+            }).then((res) => {
+                console.log(res)
+                commit('READ_MAIL', value)
+                router.push({name: 'MailDetail'})
+            }).catch((err) => {
+                console.log(err)
+            })
+        },
+        sendEmail({commit}, value) {
+            // console.log(value)
+            let params = null
+            if (value) { //들어오는 payload가 있다면
+                params = value //params는 payload로
+            }
+            const API_URL = `${REST_API}/mailbox/message/send`
+            // console.log(API_URL)
+
+            axios({
+                url: API_URL,
+                method: 'POST',
+                params, //그걸 같이 넘겨줘
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                }
+            }).then((res) => {
+                console.log(res)
+                commit('SEND_EMAIL')
+                router.push({name: 'MyPage'})
+            }).catch((err) => {
+                console.log(err)
+            })
+
         },
         userSignin({commit}, value) {
             let params = null
@@ -237,6 +298,28 @@ export default new Vuex.Store({
             }).then(() => {
                 commit('USER_SIGN_IN')
                 router.push({name: 'home'})
+            }).catch((err) => {
+                console.log(err)
+            })
+        },
+        getUserReviews({commit}, value) {
+            let params = null
+            if (value) { //들어오는 value가 있다면
+                params = value //params는 value로
+            }
+            const API_URL = `${REST_API}/review/video-review/loginuser/`+params
+            // console.log(API_URL)
+            axios({
+                url: API_URL,
+                method: 'GET',
+                params,
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                },
+            }).then((res) => {
+                console.log(res)
+                commit('GET_USER_REVIEWS', res.data)
+               
             }).catch((err) => {
                 console.log(err)
             })

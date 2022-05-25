@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import LoginView from '@/views/LoginView.vue'
 import AdminView from '@/views/AdminView.vue'
+import MailView from '@/views/MailView.vue'
 // import VideoView from '@/views/VideoView.vue'
 
 import VReviewView from '@/views/VReviewView.vue'
@@ -16,6 +17,8 @@ import SignIn from '@/components/login/SignIn.vue'
 import ManagerLogin from '@/components/admin/ManagerLogin.vue'
 import ManagerView from '@/components/admin/ManagerAdmin.vue'
 import MyPage from '@/components/login/MyPage.vue'
+import MailCreate from '@/components/mail/MailCreate.vue'
+import MailDetail from '@/components/mail/MailDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -104,6 +107,23 @@ const routes = [{
             },
 
         ]
+    },
+    {
+        path: '/mail',
+        name: 'mail',
+        component: MailView,
+        children: [{
+            path: "detail",
+            name: "MailDetail",
+            component: MailDetail
+        },
+        {
+            path: "form",
+            name: "MailCreate",
+            component: MailCreate
+        },
+        ]
+
     }
 ]
 
