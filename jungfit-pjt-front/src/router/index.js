@@ -19,6 +19,7 @@ import ManagerView from '@/components/admin/ManagerAdmin.vue'
 import MyPage from '@/components/login/MyPage.vue'
 import MailCreate from '@/components/mail/MailCreate.vue'
 import MailDetail from '@/components/mail/MailDetail.vue'
+import MyreviewDetail from '@/components/login/MyreviewDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -46,6 +47,11 @@ const routes = [{
                 path: "mypage",
                 name: "MyPage",
                 component: MyPage
+            },
+            {
+                path: "mypage/review/:reviewId",
+                name: "MyreviewDetail",
+                component: MyreviewDetail
             }
         ]
     },
@@ -60,7 +66,7 @@ const routes = [{
                 component: ManagerLogin
             },
             {
-                path: "/manager",
+                path: "manager",
                 name: "ManagerView",
                 component: ManagerView
 

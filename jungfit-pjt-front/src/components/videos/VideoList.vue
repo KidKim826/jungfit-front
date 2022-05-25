@@ -187,10 +187,10 @@
 
     <br />
     <div class="text-center">
-      <v-btn @click="search('요가 홈트')" class="ma-2" outlined color="indigo">요가</v-btn>
-      <v-btn @click="search('명상')" class="ma-2" outlined color="indigo">명상</v-btn>
-      <v-btn @click="search('스트레칭')" class="ma-2" outlined color="indigo">스트레칭</v-btn>
-      <v-btn @click="search('자세교정')" class="ma-2" outlined color="indigo">자세교정</v-btn>
+      <v-btn @click="search('gymjongkook')" class="ma-2" outlined color="indigo">GYMJONGKOOK</v-btn>
+      <v-btn @click="search('쾌걸근육맨')" class="ma-2" outlined color="indigo">MUSCLEMAN</v-btn>
+      <v-btn @click="search('토르')" class="ma-2" outlined color="indigo">THOR</v-btn>
+      <v-btn @click="search('비실이')" class="ma-2" outlined color="indigo">BISIRI</v-btn>
     </div>
 
     <v-app id="inspire">
@@ -379,7 +379,7 @@ export default {
   name: "videoList",
   data() {
     return {
-      defaultKey: "요가 홈트",
+      defaultKey: "쾌걸근육맨",
       defaultPart: "전신"
     };
   },

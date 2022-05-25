@@ -23,7 +23,7 @@
 
 <script>
   export default {
-    name: 'HelloWorld',
+    name: 'HelloJungfit',
 
   }
 </script>
@@ -54,7 +54,7 @@ body
     justify-content: center;
     font-size: 2rem;
     color: white;
-  position:relative;
+    position:relative;
 }
 
 .container::before, .container::after

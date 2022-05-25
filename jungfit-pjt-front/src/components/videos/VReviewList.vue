@@ -45,13 +45,11 @@
 
     <div id="app">
       <v-app id="inspire" >
-        <v-data-table :headers="headers" :items="selectedReview" :items-per-page="5" class="elevation-1">
+        <v-data-table :headers="headers" :items="selectedReview" :items-per-page="5" class="elevation-1" @click:row="showdetail(items)">
           <template v-slot:[`item.reviewId`]="{ value }" >
-            <router-link :to="'/review/video/'+value">
             <div class="text-truncate" style="max-width: 500px; max-height: 48px;">
-            {{ value }}
+            {{value}}
             </div>
-            </router-link>
           </template>
           <template v-slot:[`item.content`]="{ value }" >
             <!-- <router-link :to="'/review/video/'+reviewId"> -->
@@ -102,7 +100,7 @@ export default {
         };
     },
     computed: {
-        ...mapState(["selectedVideo", "selectedReview"])
+        ...mapState(["selectedVideo", "selectedReview", "isLogin"])
     },
     created() {
         const pathName = new URL(document.location).pathname.split("/");
@@ -122,6 +120,14 @@ export default {
             console.log(this.videoId);
             this.$store.dispatch("getVReviewList", payload);
         },
+        showdetail(payload) {
+          if(this.isLogin) {
+            const value = payload.videoId
+            this.$router.push(`/review/video/`+value)
+          }else {
+            this.$router.push({name: "SignIn"})
+          }
+        }
     },
 };
 </script>

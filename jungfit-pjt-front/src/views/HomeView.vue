@@ -1,6 +1,6 @@
 <template>
   <div>
-    <hello-world />
+    <hello-jungfit />
     <v-row no-gutters style="margin-top: 20px;">
       <v-col cols="12" lg="4">
         
@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import HelloWorld from "../components/HelloWorld";
+import HelloJungfit from "../components/HelloJungfit.vue";
 
 export default {
   name: "HomeView",
 
   components: {
-    HelloWorld
+    HelloJungfit
   }
 };
 </script>

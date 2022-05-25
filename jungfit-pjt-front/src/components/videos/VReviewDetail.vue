@@ -68,7 +68,7 @@ export default {
   created() {
     const pathName = new URL(document.location).pathname.split("/");
     const reviewId = pathName[pathName.length - 1];
-    this.$store.dispatch("getVReviewDetail", reviewId);
+    this.$store.dispatch("getVReviewDetail", reviewId)
     // console.log(reviewId)
   },
   methods:{

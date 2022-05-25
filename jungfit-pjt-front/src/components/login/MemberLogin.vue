@@ -5,7 +5,7 @@
       <v-flex xs12>
         <v-card class="justify-center">
           <v-toolbar flat style="padding: 45px">
-            <v-toolbar-title>로그인하기</v-toolbar-title>
+            <v-toolbar-title class="h1">로그인하기</v-toolbar-title>
           </v-toolbar>
           <div style="padding: 60px">
             <v-text-field
@@ -18,10 +18,10 @@
             label="패스워드를 입력하세요"
             ></v-text-field>
           </div>
-           <div style="padding-left: 200px">
-            <v-btn @click="login">로그인</v-btn>
-            <v-btn :to="'signinform'">회원가입</v-btn>
-          </div>
+           <div align="center" justify="space-around">
+            <v-btn @click="login" class="mr-4 mb-4">로그인</v-btn>
+            <v-btn :to="'signinform'" class="mr-4 mb-4">회원가입</v-btn>
+           </div>
         </v-card>
       </v-flex>
     </v-layout>

@@ -81,9 +81,10 @@
             </v-list-item>
           </router-link>
         </v-list-item-group>
-        <v-btn class="ma-2" dark :to="'/admin/login'">
+        <v-btn v-if="this.adminLogin === false" class="ma-2" dark :to="'/admin/login'">
           <v-icon dark>mdi-wrench</v-icon>
         </v-btn>
+        <v-btn v-else-if="this.adminLogin === true" dark @click="LogOutManager">logout</v-btn>
       </v-list>
     </v-navigation-drawer>
   </header>
@@ -95,16 +96,19 @@ export default {
   data() {
     return {
       drawer: false,
-      group: null
+      group: null,
     };
   },
   computed: {
-    ...mapState(["isLogin", "user"])
+    ...mapState(["isLogin", "user", "adminLogin"])
   },
   methods: {
     LogOut() {
       this.$store.dispatch("userLogout");
-    }
+    },
+    LogOutManager() {
+      this.$store.dispatch("managerLogout");
+    },
   }
 };
 </script>

@@ -34,6 +34,7 @@ export default new Vuex.Store({
         userReviews: [],
         mails:[],
         mail: [],
+        followers: [],
     },
     getters: {},
     mutations: {
@@ -80,6 +81,12 @@ export default new Vuex.Store({
         GET_USER_REVIEWS(state, value) {
             state.userReviews = value
         },
+        USER_VREVIEW_DETAIL(state, value) {
+            state.detailReview = value
+        },
+        GET_FOLLOWER(state, value) {
+            state.followers = value
+        },
         GET_YOUTUBE_LIST(state, value) {
             state.videos = value
             state.a = [value[0], value[1], value[2]]
@@ -124,6 +131,7 @@ export default new Vuex.Store({
             state
             console.log(value)
         },
+
 
     },
     actions: {
@@ -323,6 +331,30 @@ export default new Vuex.Store({
                 console.log(err)
             })
         },
+        userReviewDetail({commit}, value) {
+            // console.log(value)
+            let params = null
+
+            if (value) {
+                params = value
+            }
+            const API_URL = `${REST_API}/review/video/` + params
+            axios({
+                url: API_URL,
+                method: 'GET',
+                params, //그걸 같이 넘겨줘
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                },
+            }).then((res) => {
+                // console.log(res)
+                if (res.data)
+                    commit('USER_VREVIEW_DETAIL', res.data)
+                    router.push("review/" + params.reviewId)
+            }).catch((err) => {
+                console.log(err)
+            })
+        },
         getPartList({ commit }, value) {
             let params = null
 
@@ -385,6 +417,9 @@ export default new Vuex.Store({
                 url: API_URL,
                 method: 'GET',
                 params, //그걸 같이 넘겨줘
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                },
             }).then((res) => {
                 console.log(res)
                 commit('GET_VREVIEW_LIST', res.data)
@@ -444,6 +479,9 @@ export default new Vuex.Store({
             axios({
                 url: API_URL,
                 method: 'DELETE',
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                },
             }).then(() => {
                 router.push("/review/video-review/" + params.videoId)
             }).catch((err) => {
@@ -462,7 +500,10 @@ export default new Vuex.Store({
             axios({
                 url: API_URL,
                 method: 'PUT',
-                params
+                params,
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                },
             }).then(() => {
                 commit('UPDATE_VREVIEW', params)
                 router.push("/review/video-review/" + params.videoId)
@@ -470,6 +511,28 @@ export default new Vuex.Store({
                 console.log(err)
             })
         },
+        getFollower({commit}, value) {
+            // console.log(value)
+            let params = null
+            if (value) {
+                params = value
+            }
+            console.log(params)
+            const API_URL = `${REST_API}/follower/follow/follower/` + params
+            axios({
+                url: API_URL,
+                method: 'GET',
+                params, //그걸 같이 넘겨줘
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                },
+            }).then((res) => {
+                console.log(res)
+                commit('GET_FOLLOWER', res.data)
+            }).catch((err) => {
+                console.log(err)
+            })
+        }
 
     },
     modules: {}
