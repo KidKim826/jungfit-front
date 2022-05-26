@@ -27,6 +27,8 @@ export default new Vuex.Store({
         newVReview: [],
         reviews: [],
         user: "", // 유저 아이디
+        member: "", //멤버(팔로워) 아이디 (남)
+        isfollower: false,
         isLogin: false,
         manager: "",
         adminLogin: false,
@@ -88,6 +90,19 @@ export default new Vuex.Store({
         },
         GET_FOLLOWER(state, value) {
             state.followers = value
+        },
+        GO_FOLLOWER_PAGE(state, value) {
+            // console.log(value)
+            state.member = value.myId
+            // console.log(state.member)
+        },
+        FOLLOW_MEMBER(state, value) {
+            state
+            console.log(value)
+            state.isfollower = true
+        },
+        UNFOLLOW_MEMBER(state) {
+            state.isfollower = false
         },
         GET_YOUTUBE_LIST(state, value) {
             state.videos = value
@@ -291,7 +306,7 @@ export default new Vuex.Store({
             }).then((res) => {
                 console.log(res)
                 commit('SEND_EMAIL')
-                router.push({ name: 'MyPage' })
+                router.go(-1)
             }).catch((err) => {
                 console.log(err)
             })
@@ -359,6 +374,9 @@ export default new Vuex.Store({
             }).catch((err) => {
                 console.log(err)
             })
+        },
+        goFollowerPage({commit}, value) {
+            commit('GO_FOLLOWER_PAGE', value)
         },
         getPartList({ commit }, value) {
             let params = null
@@ -591,6 +609,51 @@ export default new Vuex.Store({
             }).then((res) => {
                 console.log(res)
                 commit('GET_FOLLOWER', res.data)
+            }).catch((err) => {
+                console.log(err)
+            })
+        },
+        followingMember({commit}, value) {
+            let params = null
+            if (value) {
+                params = value
+            }
+
+            const API_URL = `${REST_API}/follower/follow`
+            axios({
+                url: API_URL,
+                method: 'POST',
+                params, //그걸 같이 넘겨줘
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                },
+            }).then((res) => {
+                console.log(res)
+                commit('FOLLOW_MEMBER', res.data)
+                router.go(0)
+            }).catch((err) => {
+                console.log(err)
+            })
+        },
+        unFollowingMember({commit}, value) {
+            
+            let params = null
+            if (value) {
+                params = value
+            }
+
+            const API_URL = `${REST_API}/follower/follow`
+            axios({
+                url: API_URL,
+                method: 'DELETE',
+                params, //그걸 같이 넘겨줘
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                },
+            }).then(() => {
+                console.log("delete success")
+                commit('UNFOLLOW_MEMBER')
+                router.go(0)
             }).catch((err) => {
                 console.log(err)
             })

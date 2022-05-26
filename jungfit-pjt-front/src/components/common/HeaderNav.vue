@@ -16,6 +16,10 @@
 
             <v-col class="d-flex justify-end align-center">
               <div>
+                <!-- <span>
+                  <input v-if="checked" type="checkbox" @change="changeSwitcher" checked="checked" />
+                  <input v-else type="checkbox" @change="changeSwitcher" />
+                </span> -->
                 <span>
                   <router-link class="test" :to="{name:'videoList'}" style="text-decoration:none">
                     <v-btn text id="appbar-item">VIDEO</v-btn>
@@ -99,7 +103,8 @@ export default {
   data() {
     return {
       drawer: false,
-      group: null
+      group: null,
+      checked: false,
     };
   },
   computed: {

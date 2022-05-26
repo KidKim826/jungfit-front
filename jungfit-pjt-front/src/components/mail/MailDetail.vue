@@ -15,7 +15,7 @@
               </v-avatar>
             </template>
             <template v-slot:opposite>
-              <v-btn text :to="'/mail/form'">답장하기</v-btn>
+              <v-btn text :to="'/mail/response'">답장하기</v-btn>
               <v-btn text :to="'/user/mypage'">돌아가기</v-btn>
             </template>
             <v-card class="elevation-2">

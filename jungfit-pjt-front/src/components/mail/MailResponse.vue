@@ -4,7 +4,7 @@
       <v-card-text class="pa-5">
         <h3
           class="title blue-grey--text text--darken-2 font-weight-regular mb-4"
-        >Message to {{member}}</h3>
+        >Message to {{mail.sendId}}</h3>
         <v-timeline>
           <v-timeline-item>
             <template v-slot:icon>
@@ -16,10 +16,10 @@
             </template>
             <template v-slot:opposite>
               <v-btn text @click="sendEmail">전송하기</v-btn>
-              <v-btn text @click="back">돌아가기</v-btn>
+              <v-btn text :to="'/mail/detail'">돌아가기</v-btn>
             </template>
             <v-card class="elevation-2">
-              <v-card-title class="headline">{{user}}</v-card-title>
+              <v-card-title class="headline">{{mail.receiveId}}</v-card-title>
               <v-card-text>
                 <v-text-field
                   type="message"
@@ -41,9 +41,9 @@
 <script>
 import { mapState } from "vuex";
 export default {
-  name: "MailCreate",
+  name: "MailResponse",
   computed: {
-    ...mapState(["detailReview", "mail", "member", "user"])
+    ...mapState(["detailReview", "mail"])
   },
   data() {
     return {
@@ -53,16 +53,14 @@ export default {
   },
   methods: {
     sendEmail() {
-      console.log(this.member)
       const mail = {
         message: this.message,
-        receiveId: this.member,
-        sendId: this.user,
+        no: this.mail.no,
+        receiveId: this.mail.sendId,
+        sendId: this.mail.receiveId,
+        view: this.mail.view
       };
       this.$store.dispatch("sendEmail", mail);
-    },
-    back () {
-      this.$router.go(-1)
     }
   }
 };
