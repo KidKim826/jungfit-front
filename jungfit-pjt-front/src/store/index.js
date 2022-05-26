@@ -38,6 +38,7 @@ export default new Vuex.Store({
         mail: [],
         followers: [],
         trainerVideo: [],
+        language: false,
     },
     getters: {},
     mutations: {
@@ -139,7 +140,7 @@ export default new Vuex.Store({
         GET_VREVIEW_DETAIL(state, value) {
             // state.detailReview = [];
             state.detailReview = value;
-            console.log(state.detailReview)
+            // console.log(state.detailReview)
         },
         CREATE_VREVIEW(state, value) {
             state.reviews.push(value)
@@ -150,7 +151,11 @@ export default new Vuex.Store({
         },
         GET_TRAINER_VIDEO(state, value) {
             state.trainerVideo = value
-            console.log(value)
+            // console.log(value)
+        },
+        CHANGE_LANGUAGE(state, value) {
+            state.language = value
+            console.log("이건 state"+state.language)
         }
 
 
@@ -677,6 +682,9 @@ export default new Vuex.Store({
                 console.log(err)
             })
         },
+        changeLanguage({commit}, value) {
+            commit(`CHANGE_LANGUAGE`, value)
+        }
 
     },
     modules: {}

@@ -16,10 +16,13 @@
 
             <v-col class="d-flex justify-end align-center">
               <div>
+                <span>
+                  <toggle-button :value="false" :labels="{checked: 'Ar', unchecked: 'Ko'}" />
+                </span>
                 <!-- <span>
                   <input v-if="checked" type="checkbox" @change="changeSwitcher" checked="checked" />
                   <input v-else type="checkbox" @change="changeSwitcher" />
-                </span> -->
+                </span>-->
                 <span>
                   <router-link class="test" :to="{name:'videoList'}" style="text-decoration:none">
                     <v-btn text id="appbar-item">VIDEO</v-btn>
@@ -104,7 +107,8 @@ export default {
     return {
       drawer: false,
       group: null,
-      checked: false,
+      sync: true,
+      islanguage: false,
     };
   },
   computed: {
@@ -116,6 +120,11 @@ export default {
     },
     LogOutManager() {
       this.$store.dispatch("managerLogout");
+    },
+    changeLanguage() {
+      console.log("이것이 싱크"+this.sync)
+      
+      this.$store.dispatch("changeLanguage", this.sync)
     }
   }
 };
