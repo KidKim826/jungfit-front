@@ -24,6 +24,7 @@ import MailDetail from '@/components/mail/MailDetail.vue'
 import MyreviewDetail from '@/components/login/MyreviewDetail.vue'
 import TrainerPage from '@/components/trainers/TrainerPage.vue'
 import KakaoMap from '@/components/kakao/KakaoMap.vue'
+import MyreviewUpdate from '@/components/login/MyreviewUpdate.vue'
 Vue.use(VueRouter)
 
 const routes = [{
@@ -40,22 +41,27 @@ const routes = [{
         name: "MemberLogin",
         component: MemberLogin
 
-    },
-    {
-        path: "signinform",
-        name: "SignIn",
-        component: SignIn
-    },
-    {
-        path: "mypage",
-        name: "MyPage",
-        component: MyPage
-    },
-    {
-        path: "mypage/review/:reviewId",
-        name: "MyreviewDetail",
-        component: MyreviewDetail
-    }
+        },
+        {
+            path: "signinform",
+            name: "SignIn",
+            component: SignIn
+        },
+        {
+            path: "mypage",
+            name: "MyPage",
+            component: MyPage
+        },
+        {
+            path: "mypage/review/:reviewId",
+            name: "MyreviewDetail",
+            component: MyreviewDetail
+        },
+        {
+            path: "mypage/reviewupdate/:reviewId",
+            name: "MyreviewUpdate",
+            component: MyreviewUpdate
+        }
     ]
 },
 {

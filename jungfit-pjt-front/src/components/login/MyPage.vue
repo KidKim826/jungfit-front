@@ -191,7 +191,12 @@ export default {
     };
   },
   created() {
-    console.log(this.user);
+    // console.log(this.user);
+    // console.log(this.userInfo)
+    // console.log(this.isLogin)
+    // console.log(this.userReviews)
+    // console.log(this.mails)
+    // console.log(this.followers)
     this.$store.dispatch("getUserInfo", this.user);
     this.$store.dispatch("getUserReviews", this.user);
     this.$store.dispatch("getUserMessages", this.user);
@@ -203,29 +208,10 @@ export default {
       this.$store.dispatch("readMail", data);
     },
     readReview(data) {
-      console.log(data);
+      // console.log(data)
       this.$store.dispatch("userReviewDetail", data.reviewId);
     }
   }
-  // 필터 .. 하고싶은데 어렵다..
-  // filters:{
-  //   heightf(){
-  //     if(this.userInfo.height===0){
-  //       return '키를 등록해주세요'
-  //     }else{
-  //       return this.userInfo.height+"cm"
-  //     }
-  //   },
-  // weightf(){
-
-  // },
-  // membershipf(){
-
-  // },
-  // trainerf(){
-
-  // }
-  // }
 };
 </script>
 

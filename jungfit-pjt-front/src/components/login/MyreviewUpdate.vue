@@ -38,7 +38,7 @@
         <div>
           <b-button variant="outline-dark" @click="back">취소</b-button>
           <b-button variant="outline-primary" @click="update">수정</b-button>
-          <b-button variant="outline-danger" @click="del">삭제</b-button>
+          <b-button variant="outline-danger" @click="deletereview">삭제</b-button>
         </div>
       </b-card>
     </div>
@@ -48,9 +48,9 @@
 <script>
 import { mapState } from "vuex";
 export default {
-  name: "VReviewUpdate",
-  computed: {
-    ...mapState(["selectedVideo", "detailReview"])
+    name: "MyreviewUpdate",
+     computed: {
+    ...mapState(["selectedVideo", "detailReview", "user"])
   },
   data() {
     return {
@@ -58,14 +58,14 @@ export default {
     };
   },
   created() {
-    console.log(this.detailReview);
+    // console.log(this.detailReview);
   },
   methods: {
     submit() {
       console.log(this.title, this.content);
     },
     back() {
-      this.$router.push(`/review/video/` + this.detailReview.reviewId)
+      this.$router.push({name: "MyreviewDetail"});
     },
     update() {
       const review = {
@@ -75,11 +75,15 @@ export default {
         title: this.detailReview.title,
         content: this.detailReview.content
       };
-      this.$store.dispatch("updateVReview", review)
+      this.$store.dispatch("updateMyReview", review);
     },
-    del() {
-      this.$store.dispatch("deleteVReview", this.detailReview)
+    deletereview() {
+      this.$store.dispatch("deleteMyReviewDetail", this.detailReview)
     }
   }
-};
+}
 </script>
+
+<style>
+
+</style>

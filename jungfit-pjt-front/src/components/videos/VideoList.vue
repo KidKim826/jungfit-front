@@ -409,7 +409,9 @@ export default {
 </script>
 
 <style scoped>
-
+a {
+  text-decoration: none;
+}
 #select-btn{
   color: rgb(188, 218, 216);
   font-size: 15px;

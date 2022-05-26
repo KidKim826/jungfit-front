@@ -33,8 +33,13 @@
               </div>
             </v-card-text>
             <v-card-actions>
-              <v-btn  style="color: orange;" text @click="back">돌아가기</v-btn>
-              <v-btn v-if="detailReview.userId == user" style="color: orange;" text @click="modify">수정</v-btn>
+              <v-btn style="color: orange;" text @click="back">돌아가기</v-btn>
+              <v-btn
+                v-if="detailReview.userId == user"
+                style="color: orange;"
+                text
+                @click="modify"
+              >수정</v-btn>
               <v-btn v-if="detailReview.userId == user" style="color: orange;" text @click="del">삭제</v-btn>
             </v-card-actions>
           </v-card>
@@ -51,11 +56,26 @@ export default {
   computed: {
     ...mapState(["detailReview", "user"])
   },
-  created() {},
-  data() {
-    return {};
+  created() {
+    // console.log(this.detailReview)
   },
-  methods: {}
+  data() {
+    return {
+
+    };
+  },
+  methods: {
+      back() { 
+        this.$router.push({name: "MyPage"})
+      },
+      del() {
+        this.$store.dispatch("deleteMyReviewDetail", this.detailReview);
+      },
+      modify() {
+        this.$router.push({name: "MyreviewUpdate"});
+      }
+
+  }
 };
 </script>
 

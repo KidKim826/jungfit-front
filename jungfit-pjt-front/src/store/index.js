@@ -82,6 +82,7 @@ export default new Vuex.Store({
             state.userReviews = value
         },
         USER_VREVIEW_DETAIL(state, value) {
+            // console.log(value)
             state.detailReview = value
         },
         GET_FOLLOWER(state, value) {
@@ -347,10 +348,9 @@ export default new Vuex.Store({
                     "access-token": sessionStorage.getItem("access-token")
                 },
             }).then((res) => {
-                // console.log(res)
-                if (res.data)
+                console.log(res)
                     commit('USER_VREVIEW_DETAIL', res.data)
-                router.push("review/" + params.reviewId)
+                    router.push("/user/mypage/review/" + res.data.reviewId)
             }).catch((err) => {
                 console.log(err)
             })
@@ -404,7 +404,7 @@ export default new Vuex.Store({
         getVReviewList({ commit }, value) {
             let params = null
             let API_URL = `${REST_API}/review/video-review/`
-
+            
             if (!value.keyword) {
                 API_URL += value
                 params = value
@@ -480,6 +480,7 @@ export default new Vuex.Store({
             })
         },
         deleteVReview(context, value) {
+            // console.log(value)
             context //버림
             let params = null
             if (value) {
@@ -493,12 +494,58 @@ export default new Vuex.Store({
                     "access-token": sessionStorage.getItem("access-token")
                 },
             }).then(() => {
+                console.log("del success")
                 router.push("/review/video-review/" + params.videoId)
             }).catch((err) => {
                 console.log(err)
                 console.log('delete에러')
 
             })
+        },
+        deleteMyReviewDetail({commit}, value) {
+            commit
+            console.log(value)
+            let params = null
+            if (value) {
+                params = value
+            }
+            const API_URL = `${REST_API}/review/video/` + params.reviewId
+            axios({
+                url: API_URL,
+                method: 'DELETE',
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                },
+            }).then(() => {
+                console.log("del success")
+                router.push({name:"MyPage"})
+            }).catch((err) => {
+                console.log(err)
+                console.log('delete에러')
+
+            })
+        },
+        updateMyReview({ commit }, value) {
+            console.log(value)
+            let params = null
+            if (value) {
+                params = value
+            }
+            const API_URL = `${REST_API}/review/video/` + params.reviewId
+            axios({
+                url: API_URL,
+                method: 'PUT',
+                params,
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                },
+            }).then(() => {
+                commit('UPDATE_VREVIEW', params)
+                router.push({name: "MyreviewDetail"})
+            }).catch((err) => {
+                console.log(err)
+            })
+           
         },
         updateVReview({ commit }, value) {
             let params = null

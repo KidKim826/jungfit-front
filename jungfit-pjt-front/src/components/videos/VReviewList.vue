@@ -95,10 +95,12 @@ export default {
     ...mapState(["selectedVideo", "selectedReview", "isLogin"])
   },
   created() {
+   
     const pathName = new URL(document.location).pathname.split("/");
     const vdoId = pathName[pathName.length - 1];
-    this.$store.dispatch("getVReviewList", vdoId);
-    this.$store.dispatch("getVReviewVideo", vdoId);
+    this.$store.dispatch("getVReviewList", vdoId)
+    this.$store.dispatch("getVReviewVideo", vdoId)
+    //  console.log(vdoId)
   },
   methods: {
     showdetail(payload) {

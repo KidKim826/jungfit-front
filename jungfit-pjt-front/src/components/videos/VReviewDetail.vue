@@ -65,7 +65,7 @@ export default {
       this.$router.push(`/review/video-review/` + this.detailReview.videoId);
     },
     del() {
-      this.$store.dispatch("deleteVReview", this.detailReview);
+      this.$store.dispatch("deleteVReview", this.detailReview)
     },
     modify() {
       this.$router.push(`/review/video/modify/` + this.detailReview.reviewId);

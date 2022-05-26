@@ -16,7 +16,7 @@
             </template>
             <template v-slot:opposite>
               <v-btn text @click="sendEmail">전송하기</v-btn>
-              <v-btn text :to="'/user/detail'">돌아가기</v-btn>
+              <v-btn text :to="'/mail/detail'">돌아가기</v-btn>
             </template>
             <v-card class="elevation-2">
               <v-card-title class="headline">{{mail.receiveId}}</v-card-title>
