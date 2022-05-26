@@ -48,10 +48,8 @@ export default {
   data() {
     return {
       message: "",
-      passwordRules: [
-        v => !!v || '메세지는 필수 입력사항입니다.',
-      ],
-    }
+      passwordRules: [v => !!v || "메세지는 필수 입력사항입니다."]
+    };
   },
   methods: {
     sendEmail() {
@@ -61,10 +59,9 @@ export default {
         receiveId: this.mail.sendId,
         sendId: this.mail.receiveId,
         view: this.mail.view
-      }
-      this.$store.dispatch("sendEmail", mail)
-    },
-
+      };
+      this.$store.dispatch("sendEmail", mail);
+    }
   }
 };
 </script>

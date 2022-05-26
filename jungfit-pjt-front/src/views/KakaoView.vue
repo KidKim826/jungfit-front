@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <router-view></router-view>
-  </div>
+  <router-view />
 </template>
 
 <script>
 export default {
-  name: "AdminView"
+  name: "KakaoView"
 };
 </script>
 

@@ -1,14 +1,13 @@
 <template>
-  <div>
-    <router-view></router-view>
-  </div>
+  <router-view/>
 </template>
 
 <script>
 export default {
-  name: "AdminView"
-};
+    name: "TrainerView"
+}
 </script>
 
 <style>
+
 </style>

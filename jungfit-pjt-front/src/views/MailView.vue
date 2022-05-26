@@ -1,15 +1,14 @@
 <template>
   <div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: "MailView",
-}
+  name: "MailView"
+};
 </script>
 
 <style>
-
 </style>
