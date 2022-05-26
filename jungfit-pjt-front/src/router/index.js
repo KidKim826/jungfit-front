@@ -10,6 +10,7 @@ import VReviewView from '@/views/VReviewView.vue'
 // import VideoView from '@/views/VideoView.vue'
 
 
+
 import VideoList from '@/components/videos/VideoList.vue'
 import VReviewList from '@/components/videos/VReviewList.vue'
 import VReviewDetail from '@/components/videos/VReviewDetail.vue'
@@ -26,6 +27,8 @@ import MyreviewDetail from '@/components/login/MyreviewDetail.vue'
 import TrainerVideo from '@/components/trainers/TrainerVideo.vue'
 import KakaoMap from '@/components/kakao/KakaoMap.vue'
 import MyreviewUpdate from '@/components/login/MyreviewUpdate.vue'
+import MemberView from '@/components/login/MemberView.vue'
+import MailResponse from '@/components/mail/MailResponse.vue'
 Vue.use(VueRouter)
 
 const routes = [{
@@ -62,6 +65,11 @@ const routes = [{
                 path: "mypage/reviewupdate/:reviewId",
                 name: "MyreviewUpdate",
                 component: MyreviewUpdate
+            },
+            {
+                path: "member/:id",
+                name: "MemberView",
+                component: MemberView
             }
         ]
     },
@@ -137,6 +145,12 @@ const routes = [{
                 name: "MailCreate",
                 component: MailCreate
             },
+            {
+                path: "response",
+                name: "MailResponse",
+                component: MailResponse
+
+            }
         ]
 
     },

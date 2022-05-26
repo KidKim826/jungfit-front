@@ -1,33 +1,38 @@
 <template>
   <v-container>
-   <p>My page</p> 
+    <h1>MyPage</h1>
     <v-card class="position-relative profile-card mb-7 mt-4">
       <br />
       <v-card-text class="pa-5">
+        
         <div class="text-center" v-if="isLogin">
           <img
-            :src="`http://localhost:9999/jungfit/img/`+userInfo.fileName"
+            src="https://img.icons8.com/emoji/344/princess.png"
             alt="프로필사진입니다."
             class="rounded-circle"
             width="100"
-            style="aspect-ratio: 1/1;"
           />
-
-          <form method="post" action="/upload" enctype="multipart/form-data">
-            <input type="file" name="uploadfile">
-            <input type="submit">
-          </form>
-
-
           <h1 class="font-weight-regular">{{userInfo.userId}}</h1>
           <h4 class="op-5 font-weight-regular">{{userInfo.name}}</h4>
           <v-btn
+            @click="followControl"
             color="deep-purple accent-2"
             medium
             class="text-capitalize white--text mt-4 mb-4"
             rounded
+            v-if="isfollower === true"
           >
-            <v-icon dark>mdi-heart</v-icon>
+            <v-icon blue>mdi-heart</v-icon>
+          </v-btn>
+          <v-btn
+            @click="followControl"
+            color="deep-purple accent-2"
+            medium
+            class="text-capitalize white--text mt-4 mb-4"
+            rounded
+            v-if="isfollower === false"
+          >
+            <v-icon red>heart_broken</v-icon>
           </v-btn>
           <v-row class="mt-6">
             <v-col cols="4">
@@ -81,25 +86,16 @@
       <v-col cols="12" lg="4">
         <v-card>
           <v-card-text>
-            <h1 class="title blue-grey--text text--darken-2 font-weight-regular">Mailbox</h1>
+            <h1 class="title blue-grey--text text--darken-2 font-weight-regular">Direct</h1>
             <v-list two-line>
               <v-list-item-group v-model="selected" multiple active-class="info--text">
                 <template>
-                  <v-list-item v-for="(m, index) in mails" :key="index" @click="readMail(m)">
-                    <template v-slot:default="{ active }">
+                  <v-list-item>
                       <v-list-item-content>
-                        <v-list-item-title class="h4" v-text="m.sendId"></v-list-item-title>
-                        <v-list-item-subtitle v-text="m.message"></v-list-item-subtitle>
+                        <v-list-item-title class="h3" @click="sendMail">쪽지보내기</v-list-item-title>
                       </v-list-item-content>
-                      <v-list-item-action>
-                        <v-list-item-action-text v-if="m.view===1">읽음</v-list-item-action-text>
-                        <v-list-item-action-text v-else>읽지않음</v-list-item-action-text>
-                        <v-icon v-if="!active" color="grey lighten-1">mdi-star-outline</v-icon>
-                        <v-icon v-else color="yellow">mdi-star</v-icon>
-                      </v-list-item-action>
-                    </template>
                   </v-list-item>
-                  <v-divider v-if="index+1 < mails.length" :key="index"></v-divider>
+                  <v-divider></v-divider>
                 </template>
               </v-list-item-group>
             </v-list>
@@ -132,7 +128,6 @@
                       </v-list-item-action>
                     </template>
                   </v-list-item>
-
                   <v-divider v-if="index + 1 < userReviews.length" :key="index"></v-divider>
                 </template>
               </v-list-item-group>
@@ -147,7 +142,7 @@
             <v-list two-line>
               <v-list-item-group v-model="selected" multiple active-class="info--text">
                 <template>
-                  <v-list-item v-for="(f, index) in followers" :key="index" @click="goFollowerPage(f)">
+                  <v-list-item v-for="(f, index) in followers" :key="index">
                     <template v-slot:default="{ active }">
                       <img
                         src="https://img.icons8.com/emoji/344/princess.png"
@@ -180,61 +175,59 @@
 
 <script>
 import { mapState } from "vuex";
-
 export default {
-  name: "MyPage",
-  computed: {
+    name: "MemberView",
+    computed: {
     ...mapState([
       "user",
+      "member",
       "userInfo",
+    "userReviews",
       "isLogin",
-      "userReviews",
-      "mails",
-      "followers"
+      "followers",
+      "following",
+      "isfollower"
     ])
   },
   data() {
     return {
-      // selected: [2]
+    //   selected: [2]
     };
   },
   created() {
-    // console.log(this.user);
-    // console.log(this.userInfo)
-    // console.log(this.isLogin)
-    // console.log(this.userReviews)
-    // console.log(this.mails)
-    console.log(this.followers)
-    this.$store.dispatch("getUserInfo", this.user);
-    this.$store.dispatch("getUserReviews", this.user);
-    this.$store.dispatch("getUserMessages", this.user);
-    this.$store.dispatch("getFollower", this.user);
-    this.$store.dispatch("getFollowing", this.user);
-    // this.$store.dispatch("getUserPic", this.user);
-    // this.$store.dispatch("getFollowing", this.user);
+      console.log(this.member)
+    this.$store.dispatch("getUserInfo", this.member)
+    this.$store.dispatch("getUserReviews", this.member)
+    this.$store.dispatch("getFollower", this.member)
+    this.$store.dispatch("getFollowing", this.member)
   },
   methods: {
-    readMail(data) {
-      this.$store.dispatch("readMail", data);
-    },
-    readReview(data) {
-      // console.log(data)
-      this.$store.dispatch("userReviewDetail", data.reviewId);
-    },
-    goFollowerPage(data) {
-
-      this.$store.dispatch("goFollowerPage", data)
-      this.$router.push("/user/member/"+data.myId)
-    }
-  }
-};
+      followControl() {
+          console.log(1)
+           const payload = {
+              myId: this.user,
+              yourId: this.member
+           };
+            console.log("here")
+          if(this.isfollower === true) {
+              this.isfollower = false;
+              console.log("unfol")
+            this.$store.dispatch("unFollowingMember", payload)
+          }else {
+              this.isfollower = true;
+               console.log("fol")
+                this.$store.dispatch("followingMember", payload)
+          }
+           
+      },
+      sendMail() {
+          this.$router.push({name: "MailCreate"})
+      },
+      
+  },
+}
 </script>
 
-<style scoped>
-p {
-  font-size:30px;
-  color: #bcdad8;
-  font-style: italic;
-  font-weight: bold;
-}
+<style>
+
 </style>

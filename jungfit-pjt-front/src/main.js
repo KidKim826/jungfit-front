@@ -4,6 +4,8 @@ import store from './store'
 import router from './router'
 import vuetify from './plugins/vuetify'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import ToggleButton from 'vue-js-toggle-button'
+Vue.use(ToggleButton)
 
 // Import Bootstrap and BootstrapVue CSS files (order is important)
 import 'bootstrap/dist/css/bootstrap.css'

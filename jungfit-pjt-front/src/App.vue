@@ -7,6 +7,7 @@
 </template>
 
 <script>
+
 import HeaderNav from "@/components/common/HeaderNav.vue";
 import FooterBar from "@/components/common/FooterBar.vue"
 export default {

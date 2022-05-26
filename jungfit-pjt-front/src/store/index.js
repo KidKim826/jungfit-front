@@ -27,6 +27,8 @@ export default new Vuex.Store({
         newVReview: [],
         reviews: [],
         user: "", // 유저 아이디
+        member: "", //멤버(팔로워) 아이디 (남)
+        isfollower: false,
         isLogin: false,
         manager: "",
         adminLogin: false,
@@ -36,6 +38,7 @@ export default new Vuex.Store({
         mail: [],
         followers: [],
         trainerVideo: [],
+        language: false,
     },
     getters: {},
     mutations: {
@@ -89,6 +92,19 @@ export default new Vuex.Store({
         GET_FOLLOWER(state, value) {
             state.followers = value
         },
+        GO_FOLLOWER_PAGE(state, value) {
+            // console.log(value)
+            state.member = value.myId
+            // console.log(state.member)
+        },
+        FOLLOW_MEMBER(state, value) {
+            state
+            console.log(value)
+            state.isfollower = true
+        },
+        UNFOLLOW_MEMBER(state) {
+            state.isfollower = false
+        },
         GET_YOUTUBE_LIST(state, value) {
             state.videos = value
             state.a = [value[0], value[1], value[2]]
@@ -124,7 +140,7 @@ export default new Vuex.Store({
         GET_VREVIEW_DETAIL(state, value) {
             // state.detailReview = [];
             state.detailReview = value;
-            console.log(state.detailReview)
+            // console.log(state.detailReview)
         },
         CREATE_VREVIEW(state, value) {
             state.reviews.push(value)
@@ -135,7 +151,11 @@ export default new Vuex.Store({
         },
         GET_TRAINER_VIDEO(state, value) {
             state.trainerVideo = value
-            console.log(value)
+            // console.log(value)
+        },
+        CHANGE_LANGUAGE(state, value) {
+            state.language = value
+            console.log("이건 state"+state.language)
         }
 
 
@@ -291,7 +311,7 @@ export default new Vuex.Store({
             }).then((res) => {
                 console.log(res)
                 commit('SEND_EMAIL')
-                router.push({ name: 'MyPage' })
+                router.go(-1)
             }).catch((err) => {
                 console.log(err)
             })
@@ -359,6 +379,9 @@ export default new Vuex.Store({
             }).catch((err) => {
                 console.log(err)
             })
+        },
+        goFollowerPage({commit}, value) {
+            commit('GO_FOLLOWER_PAGE', value)
         },
         getPartList({ commit }, value) {
             let params = null
@@ -595,6 +618,51 @@ export default new Vuex.Store({
                 console.log(err)
             })
         },
+        followingMember({commit}, value) {
+            let params = null
+            if (value) {
+                params = value
+            }
+
+            const API_URL = `${REST_API}/follower/follow`
+            axios({
+                url: API_URL,
+                method: 'POST',
+                params, //그걸 같이 넘겨줘
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                },
+            }).then((res) => {
+                console.log(res)
+                commit('FOLLOW_MEMBER', res.data)
+                router.go(0)
+            }).catch((err) => {
+                console.log(err)
+            })
+        },
+        unFollowingMember({commit}, value) {
+            
+            let params = null
+            if (value) {
+                params = value
+            }
+
+            const API_URL = `${REST_API}/follower/follow`
+            axios({
+                url: API_URL,
+                method: 'DELETE',
+                params, //그걸 같이 넘겨줘
+                headers: {
+                    "access-token": sessionStorage.getItem("access-token")
+                },
+            }).then(() => {
+                console.log("delete success")
+                commit('UNFOLLOW_MEMBER')
+                router.go(0)
+            }).catch((err) => {
+                console.log(err)
+            })
+        },
         getTrainerVideo({ commit }, value) {
             commit
             let params = null
@@ -614,6 +682,9 @@ export default new Vuex.Store({
                 console.log(err)
             })
         },
+        changeLanguage({commit}, value) {
+            commit(`CHANGE_LANGUAGE`, value)
+        }
 
     },
     modules: {}
