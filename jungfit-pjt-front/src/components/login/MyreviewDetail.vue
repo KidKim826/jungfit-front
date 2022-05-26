@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <v-container fill-height>
       <v-row style="height: 450px; ">
         <v-col>
@@ -14,23 +14,30 @@
             allowfullscreen
           ></iframe>
         </v-col>
-        <v-col>
-          <v-card-text class="text">
-            <div>
-              <h1>
-                <strong>{{detailReview.userId}}</strong>
-              </h1>
-            </div>
-            <div>
-              <h4>{{detailReview.regDate}}</h4>
-            </div>
-            <div>
-              <h3>{{detailReview.viewCnt}}</h3>
-            </div>
-            <div>
-              <h2>{{detailReview.content}}</h2>
-            </div>
-          </v-card-text>
+        <v-col class="mt-5">
+          <v-card height="390px">
+            <v-card-text class="text">
+              <div>
+                <h1>
+                  <strong>{{detailReview.userId}}</strong>
+                </h1>
+              </div>
+              <div>
+                <h4>{{detailReview.regDate}}</h4>
+              </div>
+              <div>
+                <h3>{{detailReview.viewCnt}}</h3>
+              </div>
+              <div>
+                <h2>{{detailReview.content}}</h2>
+              </div>
+            </v-card-text>
+            <v-card-actions>
+              <v-btn  style="color: orange;" text @click="back">돌아가기</v-btn>
+              <v-btn v-if="detailReview.userId == user" style="color: orange;" text @click="modify">수정</v-btn>
+              <v-btn v-if="detailReview.userId == user" style="color: orange;" text @click="del">삭제</v-btn>
+            </v-card-actions>
+          </v-card>
         </v-col>
       </v-row>
     </v-container>
@@ -42,7 +49,7 @@ import { mapState } from "vuex";
 export default {
   name: "MyreviewDetail",
   computed: {
-    ...mapState(["detailReview"])
+    ...mapState(["detailReview", "user"])
   },
   created() {},
   data() {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <h2>코치진 소개</h2>
+      <p style="font-size:100px; color:#292f38;">JUNGFIT TRAINER</p> 
       <v-row>
         <v-col cols="3">
           <v-img src="https://ifh.cc/g/nBMH3m.jpg" id="trainer-card" alt="짐종국카드">
@@ -85,6 +85,17 @@ export default {
 html {
   height: 100%;
   width: 100%;
+}
+
+p {
+  color: #43d7d9;
+  font-size: 13px;
+  text-shadow: 0 0 5px rgb(60, 186, 184), 0 0 10px rgb(99, 194, 193),
+    0 0 20px rgb(131, 211, 210), 0 0 40px rgb(231, 254, 234), 0 0 80px #ffffff,
+    0 0 90px rgb(132, 205, 203), 0 0 100px rgb(110, 209, 207),
+    0 0 150px rgb(60, 186, 184);
+  font-style: italic;
+  font-weight: bold;
 }
 
 body {

@@ -9,7 +9,7 @@
             </v-toolbar>
             <div style="padding: 60px">
               <v-text-field v-model="managerId" label="아이디를 입력하세요"></v-text-field>
-              <v-text-field v-model="password" type="password" label="패스워드를 입력하세요"></v-text-field>
+              <v-text-field v-model="password" type="password" label="패스워드를 입력하세요" @keyup.13="login"></v-text-field>
             </div>
             <div align="center" justify="space-around">
               <v-btn @click="login" class="mr-4 mb-4">로그인</v-btn>

@@ -1,37 +1,54 @@
 <template>
-  <v-container>
-    <div id="app">
-      <h2>&#10004; 리뷰 상세보기</h2>
-      <div id="app">
-        <v-app id="inspire">
-          <v-card class="mx-auto" width="700" height="600">
-            <v-card-title class="pb-0">{{detailReview.title}}</v-card-title>
-
-            <v-card-text class="text--primary">
-              <div>{{detailReview.userId}}</div>
-              <div>{{detailReview.regDate}}</div>
-              <div>{{detailReview.viewCnt}}</div>
-              <div>{{detailReview.content}}</div>
+  <div>
+    <v-container fill-height>
+      <v-row style="height: 450px; ">
+        <v-col>
+          <iframe
+            style="margin: 10px; box-shadow: 7px 5px 5px #43d7d9;"
+            width="670"
+            height="430"
+            :src="'https://www.youtube.com/embed/'+detailReview.videoId"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </v-col>
+        <v-col class="mt-5">
+          <v-card height="390px">
+            <v-card-text class="text">
+              <div>
+                <h1>
+                  <strong>{{detailReview.userId}}</strong>
+                </h1>
+              </div>
+              <div>
+                <h4>{{detailReview.regDate}}</h4>
+              </div>
+              <div>
+                <h3>{{detailReview.viewCnt}}</h3>
+              </div>
+              <div>
+                <h2>{{detailReview.content}}</h2>
+              </div>
             </v-card-text>
-            <v-spacer></v-spacer>
             <v-card-actions>
-              <v-btn color="orange" text @click="back">돌아가기</v-btn>
-
-              <v-btn color="orange" text @click="modify">수정</v-btn>
-              <v-btn color="orange" text @click="del">삭제</v-btn>
+              <v-btn  style="color: orange;" text @click="back">돌아가기</v-btn>
+              <v-btn v-if="detailReview.userId == user" style="color: orange;" text @click="modify">수정</v-btn>
+              <v-btn v-if="detailReview.userId == user" style="color: orange;" text @click="del">삭제</v-btn>
             </v-card-actions>
           </v-card>
-        </v-app>
-      </div>
-    </div>
-  </v-container>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
 export default {
   computed: {
-    ...mapState(["detailReview"])
+    ...mapState(["detailReview", "user"])
   },
   data() {
     return {};
@@ -57,5 +74,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.v-btn { 
+  font-size: 15px
+}
+
 </style>

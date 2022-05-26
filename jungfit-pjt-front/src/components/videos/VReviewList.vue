@@ -4,8 +4,7 @@
       <div>
         <h2>비디오 리뷰 리스트</h2>
       </div>
-
-      <div>
+      <div class="mb-2">
         <iframe
           width="355"
           height="220"
@@ -15,52 +14,53 @@
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
         ></iframe>
-      </div>
-      <div>
-        <div>
-          <b-dropdown v-model="mode" id="dropdown-1" :text="label" class="m-md-2">
-            <b-dropdown-item value="1">제목</b-dropdown-item>
-            <b-dropdown-item value="2">내용</b-dropdown-item>
-            <b-dropdown-item value="3">제목+내용</b-dropdown-item>
-          </b-dropdown>
-        </div>
-        <div class="search">
-          <input type="text" v-model="keyword" />
-          <button @click="search">검색</button>
-        </div>
-        <router-link :to="'/review/video/create/'+selectedVideo[0].videoId">
-          <div>
-            <v-btn class="mx-2" fab dark small color="indigo">
-              <v-icon dark>mdi-pencil</v-icon>
-            </v-btn>
-          </div>
-        </router-link>
+        <v-app id="button-pos">
+          <span class="d-flex justify-end">
+            <router-link :to="'/review/video/create/'+selectedVideo[0].videoId" style="text-decoration: none;">
+              <v-btn id="write-button" small outlined>
+                <v-icon>mdi-pencil</v-icon>
+              </v-btn>
+            </router-link>
+          </span>
+        </v-app>
       </div>
 
       <div id="app">
         <v-app id="inspire">
-          <v-data-table
-            :headers="headers"
-            :items="selectedReview"
-            :items-per-page="5"
-            class="elevation-1"
-          >
-            <template v-slot:[`item.reviewId`]="{ value }">
-              <div
-                class="text-truncate"
-                style="max-width: 500px; max-height: 48px; cursor:pointer;"
-                @click="showdetail(value)"
-              >상세보기</div>
-            </template>
-            <template v-slot:[`item.content`]="{ value }">
-              <!-- <router-link :to="'/review/video/'+reviewId"> -->
-              <div class="text-truncate" style="max-width: 500px; max-height: 48px;">{{ value }}</div>
-              <!-- </router-link> -->
-            </template>
-            <template v-slot:[`item.title`]="{ value }">
-              <div class="text-truncate" style="max-width: 150px; max-height: 48px;">{{ value }}</div>
-            </template>
-          </v-data-table>
+          <v-card>
+            <v-card-title>
+              Video Review List
+              <v-spacer></v-spacer>
+              <v-text-field
+                v-model="search"
+                append-icon="mdi-magnify"
+                label="Search"
+                single-line
+                hide-details
+              ></v-text-field>
+            </v-card-title>
+            <v-data-table
+              :headers="headers"
+              :items="selectedReview"
+              :search="search"
+              :items-per-page="5"
+              class="elevation-1"
+            >
+              <template v-slot:[`item.reviewId`]="{ value }">
+                <div
+                  class="text-truncate"
+                  style="max-width: 500px; max-height: 48px; cursor:pointer;"
+                  @click="showdetail(value)"
+                >상세보기</div>
+              </template>
+              <template v-slot:[`item.content`]="{ value }">
+                <div class="text-truncate" style="max-width: 500px; max-height: 48px;">{{ value }}</div>
+              </template>
+              <template v-slot:[`item.title`]="{ value }">
+                <div class="text-truncate" style="max-width: 150px; max-height: 48px;">{{ value }}</div>
+              </template>
+            </v-data-table>
+          </v-card>
         </v-app>
       </div>
     </v-container>
@@ -73,8 +73,7 @@ export default {
   name: "VReviewList",
   data() {
     return {
-      keyword: "",
-      mode: 1,
+      search: "",
       videoId: "",
       headers: [
         { text: "", value: "reviewId" },
@@ -89,7 +88,6 @@ export default {
         { text: "조회수", value: "viewCnt" },
         { text: "작성일자", value: "regDate" }
       ],
-      items: ["제목", "내용", "제목+내용"],
       label: ""
     };
   },
@@ -103,17 +101,6 @@ export default {
     this.$store.dispatch("getVReviewVideo", vdoId);
   },
   methods: {
-    search() {
-      const payload = {
-        mode: this.mode,
-        keyword: this.keyword,
-        videoId: this.selectedReview[0].videoId
-      };
-      console.log(this.mode);
-      console.log(this.keyword);
-      console.log(this.videoId);
-      this.$store.dispatch("getVReviewList", payload);
-    },
     showdetail(payload) {
       console.log(payload);
       if (this.isLogin) {
@@ -128,5 +115,14 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+a {
+  text-decoration: none;
+}
+#button-pos {
+  background-color: #2a2828;
+}
+#write-button{
+  color: rgb(188, 218, 216);
+}
 </style>
