@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container>
+    <v-container style="height:1100px">
       <p style="font-size:100px; color:#292f38;">JUNGFIT TRAINER</p> 
       <v-row>
         <v-col cols="3">
@@ -71,6 +71,7 @@
             </figure></v-img>
         </v-col>
       </v-row>
+
     </v-container>
   </div>
 </template>
@@ -92,12 +93,14 @@ export default {
 </script>
 
 <style scoped>
+
 html {
   height: 100%;
   width: 100%;
 }
 
 p {
+  margin-top:30px;
   color: #43d7d9;
   font-size: 13px;
   text-shadow: 0 0 5px rgb(60, 186, 184), 0 0 10px rgb(99, 194, 193),
@@ -127,6 +130,7 @@ body {
   color: white;
   position: relative;
 }
+
 
 .container::before,
 .container::after {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="loginform">
     <v-container fil-height style="max-width:450px;">
       <v-layout row wrap style="margin-top: 30px">
         <v-flex xs12>
@@ -50,5 +50,9 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+#loginform{
+  margin-top:20px;
+  margin-bottom:330px;
+}
 </style>

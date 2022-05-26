@@ -8,8 +8,8 @@
               <span>
                 <v-app-bar-nav-icon @click="drawer = true" id="appbar-item"></v-app-bar-nav-icon>
               </span>
-              <router-link :to="'/'" style="text-decoration:none">
-                <span class="companyname text-uppercase" spellcheck="false">jungfit</span>
+              <router-link :to="'/'" style="text-decoration:none" >
+                <span class="companyname text-uppercase ml-2" spellcheck="false">jungfit</span>
               </router-link>
               <!--여까지 완-->
             </v-col>
@@ -58,15 +58,15 @@
       <v-layout column align-center>
         <v-flex class="mt-5">
           <v-avatar size="100">
-            <img src="https://img.icons8.com/emoji/344/princess.png" alt="내프로필사진입니다." />
+            <img  :src="`http://localhost:9999/jungfit/img/`+userInfo.fileName" alt="내프로필사진입니다." style="aspect-ratio: 1/1;"/>
           </v-avatar>
-          <p class="white--text subheading mt-1" v-if="isLogin">{{user}}</p>
+          <p class="white--text subheading mt-1" v-if="isLogin" style="font-size:15px">{{user}}</p>
         </v-flex>
       </v-layout>
       <v-list nav dense>
         <v-list-item-group active-class="text--accent-4">
           <!-- 홈 -->
-          <router-link :to="'/'">
+          <router-link :to="'/'" style="text-decoration:none">
             <v-list-item>
               <v-list-item-icon>
                 <v-icon>mdi-home</v-icon>
@@ -75,7 +75,7 @@
             </v-list-item>
           </router-link>
           <!-- 동영상 -->
-          <router-link :to="'/video'">
+          <router-link :to="'/video'" style="text-decoration:none">
             <v-list-item>
               <v-list-item-icon>
                 <v-icon>mdi-youtube</v-icon>
@@ -84,7 +84,7 @@
             </v-list-item>
           </router-link>
         </v-list-item-group>
-        <v-btn v-if="this.adminLogin === false" class="ma-2" dark :to="'/admin/login'">
+        <v-btn v-if="this.adminLogin === false" class="ma-2" dark :to="'/admin/login'" style="text-decoration:none">
           <v-icon dark>mdi-wrench</v-icon>
         </v-btn>
         <v-btn v-else-if="this.adminLogin === true" dark @click="LogOutManager">logout</v-btn>
@@ -103,7 +103,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["isLogin", "user", "adminLogin"])
+    ...mapState(["isLogin", "user", "adminLogin", "userInfo"])
   },
   methods: {
     LogOut() {

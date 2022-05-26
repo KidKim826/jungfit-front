@@ -1,16 +1,24 @@
 <template>
   <v-container>
-    <h1>MyPage</h1>
+   <p>My page</p> 
     <v-card class="position-relative profile-card mb-7 mt-4">
       <br />
       <v-card-text class="pa-5">
         <div class="text-center" v-if="isLogin">
           <img
-            src="https://img.icons8.com/emoji/344/princess.png"
+            :src="`http://localhost:9999/jungfit/img/`+userInfo.fileName"
             alt="프로필사진입니다."
             class="rounded-circle"
             width="100"
+            style="aspect-ratio: 1/1;"
           />
+
+          <form method="post" action="/upload" enctype="multipart/form-data">
+            <input type="file" name="uploadfile">
+            <input type="submit">
+          </form>
+
+
           <h1 class="font-weight-regular">{{userInfo.userId}}</h1>
           <h4 class="op-5 font-weight-regular">{{userInfo.name}}</h4>
           <v-btn
@@ -196,12 +204,13 @@ export default {
     // console.log(this.isLogin)
     // console.log(this.userReviews)
     // console.log(this.mails)
-    // console.log(this.followers)
+    console.log(this.followers)
     this.$store.dispatch("getUserInfo", this.user);
     this.$store.dispatch("getUserReviews", this.user);
     this.$store.dispatch("getUserMessages", this.user);
     this.$store.dispatch("getFollower", this.user);
     this.$store.dispatch("getFollowing", this.user);
+    // this.$store.dispatch("getUserPic", this.user);
   },
   methods: {
     readMail(data) {
@@ -216,4 +225,10 @@ export default {
 </script>
 
 <style scoped>
+p {
+  font-size:30px;
+  color: #bcdad8;
+  font-style: italic;
+  font-weight: bold;
+}
 </style>

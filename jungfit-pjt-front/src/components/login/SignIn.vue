@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card style="border-radius:5%; margin:100px 250px 100px 250px  ">
+    <v-card style="border-radius:5%; margin:50px 250px 50px 250px  ">
       <v-app id="inspire" justify-center>
         <v-form ref="form" v-model="valid" lazy-validation class="justify-center ma-16 pa-10">
           <b style="font-size:40px">회원가입</b>

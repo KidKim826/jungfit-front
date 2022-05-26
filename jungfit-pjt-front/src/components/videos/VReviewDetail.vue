@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="reviewdetail">
     <v-container fill-height>
       <br />
       <div class="d-flex justify-start">
@@ -99,5 +99,9 @@ p {
   font-size: 30px;
   color: #bcdad8;
   font-weight: bold;
+}
+#reviewdetail{
+  margin-top:20px;
+  margin-bottom:250px;
 }
 </style>
