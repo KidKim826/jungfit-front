@@ -35,13 +35,14 @@ export default new Vuex.Store({
         mails: [],
         mail: [],
         followers: [],
+        trainerVideo: [],
     },
     getters: {},
     mutations: {
         MANAGER_LOGIN(state, value) {
             state.manager = value
             state.adminLogin = true
-            // console.log(state.adminLogin)
+                // console.log(state.adminLogin)
 
         },
         MANAGER_LOGOUT(state) {
@@ -51,13 +52,13 @@ export default new Vuex.Store({
         },
         GET_USER_INFO(state, value) {
             state.userInfo = value.data
-            // console.log(value.data)
+                // console.log(value.data)
         },
         USER_LOGIN(state, value) {
             console.log(value)
             state.user = value
             state.isLogin = true
-            // console.log(state.isLogin)
+                // console.log(state.isLogin)
         },
         USER_LOGOUT(state) {
             sessionStorage.clear()
@@ -70,7 +71,7 @@ export default new Vuex.Store({
         GET_USER_MESSAGES(state, value) {
             // console.log(value)
             state.mails = value
-            // console.log(state.mails)
+                // console.log(state.mails)
         },
         READ_MAIL(state, value) {
             state.mail = value
@@ -105,7 +106,7 @@ export default new Vuex.Store({
         },
         GET_VREVIEW_LIST(state, value) {
             state.selectedReview = value
-            // console.log(value)
+                // console.log(value)
         },
         GET_VREVIEW_VIDEO(state, value) {
             state.selectedVideo = [];
@@ -132,6 +133,10 @@ export default new Vuex.Store({
             state
             console.log(value)
         },
+        GET_TRAINER_VIDEO(state, value) {
+            state.trainerVideo = value
+            console.log(value)
+        }
 
 
     },
@@ -274,7 +279,7 @@ export default new Vuex.Store({
                 params = value //params는 payload로
             }
             const API_URL = `${REST_API}/mailbox/message/send`
-            // console.log(API_URL)
+                // console.log(API_URL)
 
             axios({
                 url: API_URL,
@@ -316,7 +321,7 @@ export default new Vuex.Store({
                 params = value //params는 value로
             }
             const API_URL = `${REST_API}/review/video-review/loginuser/` + params
-            // console.log(API_URL)
+                // console.log(API_URL)
             axios({
                 url: API_URL,
                 method: 'GET',
@@ -392,14 +397,14 @@ export default new Vuex.Store({
                 params: params,
             })
 
-                .then((res) => {
-                    commit("GET_YOUTUBE_LIST", res.data.items)
-                })
+            .then((res) => {
+                commit("GET_YOUTUBE_LIST", res.data.items)
+            })
 
-                .catch((err) => {
-                    console.log(err)
-                    console.log("유투브 에러남")
-                })
+            .catch((err) => {
+                console.log(err)
+                console.log("유투브 에러남")
+            })
         },
         getVReviewList({ commit }, value) {
             let params = null
@@ -426,7 +431,7 @@ export default new Vuex.Store({
             }).then((res) => {
                 console.log(res)
                 commit('GET_VREVIEW_LIST', res.data)
-                // router.push(`videoId`)
+                    // router.push(`videoId`)
             }).catch((err) => {
                 console.log(err)
             })
@@ -589,7 +594,26 @@ export default new Vuex.Store({
             }).catch((err) => {
                 console.log(err)
             })
-        }
+        },
+        getTrainerVideo({ commit }, value) {
+            commit
+            let params = null
+            if (value) {
+                params = value
+            }
+            // console.log(params)
+            const API_URL = `${REST_API}/video/list/trainer-info/` + params
+            axios({
+                url: API_URL,
+                method: 'GET',
+                params, //그걸 같이 넘겨줘
+            }).then((res) => {
+                // console.log(res)
+                commit('GET_TRAINER_VIDEO', res.data)
+            }).catch((err) => {
+                console.log(err)
+            })
+        },
 
     },
     modules: {}
