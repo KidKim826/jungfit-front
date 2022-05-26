@@ -3,7 +3,7 @@
     <v-container>
       <br/>
       <br/>
-      <p style="font-size:50px;">오늘 한국의 TOP 12</p>
+      <p >오늘 한국의 TOP 12</p>
       <br/>
       <div class="text-center" >
       <v-btn @click="searchPart('전신')" id="select-btn" outlined class="mr-3">전신</v-btn> 
@@ -189,7 +189,7 @@
       </v-app>
       <br/>
       <br/>
-      <p style="font-size:50px;">NEW! 트레이너 영상</p>
+      <p >NEW! 트레이너 영상</p>
 
       <br/>
       <div class="text-center">
@@ -426,7 +426,7 @@ export default {
 }
 
 p {
-  font-size: 13px;
+  font-size:50px;
   color: rgb(188, 218, 216);
   font-style: italic;
   font-weight: bold;

@@ -1,8 +1,8 @@
 <template>
   <div>
     <v-container>
-      <div>
-        <h2>비디오 리뷰 리스트</h2>
+      <div class="d-flex justify-start">
+        <p>Review List</p> 
       </div>
       <div class="mb-2">
         <iframe
@@ -125,4 +125,11 @@ a {
 #write-button{
   color: rgb(188, 218, 216);
 }
+p {
+  font-size:30px;
+  color: #bcdad8;
+  font-style: italic;
+  font-weight: bold;
+}
+
 </style>
