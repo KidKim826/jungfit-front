@@ -6,7 +6,7 @@
         <v-col cols="3">
           <v-img src="https://ifh.cc/g/nBMH3m.jpg" id="trainer-card" alt="짐종국카드">
             <figure class="long">
-              <a href="#">
+              <router-link :to="'/trainer/info/'+this.trainer[0]">
                 <p></p>
                 <figcaption>
                   <div class="line">
@@ -17,14 +17,14 @@
                     </span>
                   </div>
                 </figcaption>
-              </a>
+              </router-link>
             </figure>
           </v-img>
         </v-col>
         <v-col cols="3">
           <v-img src="https://ifh.cc/g/KoQHLl.jpg" id="trainer-card" alt="쾌걸근육맨카드">
           <figure class="long">
-              <a href="#">
+                <router-link :to="'/trainer/info/'+this.trainer[1]">
                 <p></p>
                 <figcaption>
                   <div class="line">
@@ -35,12 +35,12 @@
                     </span>
                   </div>
                 </figcaption>
-              </a>
+              </router-link>
             </figure></v-img>
         </v-col>
         <v-col cols="3">
           <v-img src="https://ifh.cc/g/N2Y1QH.jpg" id="trainer-card" alt="토르카드"><figure class="long">
-              <a href="#">
+             <router-link :to="'/trainer/info/'+this.trainer[2]">
                 <p></p>
                 <figcaption>
                   <div class="line">
@@ -51,12 +51,12 @@
                     </span>
                   </div>
                 </figcaption>
-              </a>
+              </router-link>
             </figure></v-img>
         </v-col>
         <v-col cols="3">
           <v-img src="https://ifh.cc/g/DroBb8.jpg" id="trainer-card" alt="비실이카드"><figure class="long">
-              <a href="#">
+              <router-link :to="'/trainer/info/'+this.trainer[3]">
                 <p></p>
                 <figcaption>
                   <div class="line">
@@ -67,7 +67,7 @@
                     </span>
                   </div>
                 </figcaption>
-              </a>
+              </router-link>
             </figure></v-img>
         </v-col>
       </v-row>
@@ -77,7 +77,17 @@
 
 <script>
 export default {
-  name: "HelloJungfit"
+  name: "HelloJungfit",
+  data(){
+    return{
+      trainer:['GYMJONGKOOK', "ThankyouBUBU","힙으뜸","피지컬갤러리"],
+    }
+  },
+  methods:{
+    trainerclick(value){
+      console.log(value)
+    }
+  }
 };
 </script>
 
