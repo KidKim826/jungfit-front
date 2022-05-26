@@ -3,11 +3,11 @@
     <v-container>
       <br />
       <h3>부위 별 운동 영상 TOP12</h3>
-      <div class="text-center">
-      <v-btn @click="searchPart('전신')" class="ma-2" outlined color="indigo">전신</v-btn> 
-      <v-btn @click="searchPart('상체')" class="ma-2" outlined color="indigo">상체</v-btn>
-      <v-btn @click="searchPart('하체')" class="ma-2" outlined color="indigo">하체</v-btn>
-      <v-btn @click="searchPart('복부')" class="ma-2" outlined color="indigo">복부</v-btn>
+      <div class="text-center" >
+      <v-btn @click="searchPart('전신')" id="select-btn" outlined class="ma-2">전신</v-btn> 
+      <v-btn @click="searchPart('상체')" id="select-btn" outlined class="ma-2">상체</v-btn>
+      <v-btn @click="searchPart('하체')" id="select-btn" outlined class="ma-2">하체</v-btn>
+      <v-btn @click="searchPart('복부')" id="select-btn" outlined class="ma-2">복부</v-btn>
       </div>
 
       <v-app id="inspire">
@@ -185,13 +185,15 @@
         </v-row>
       </div>
       </v-app>
-    <br />
-    <div class="text-center">
-      <v-btn @click="search('gymjongkook')" class="ma-2" outlined color="indigo">GYMJONGKOOK</v-btn>
-      <v-btn @click="search('쾌걸근육맨')" class="ma-2" outlined color="indigo">MUSCLEMAN</v-btn>
-      <v-btn @click="search('토르')" class="ma-2" outlined color="indigo">THOR</v-btn>
-      <v-btn @click="search('비실이')" class="ma-2" outlined color="indigo">BISIRI</v-btn>
-    </div>
+
+      <br />
+      <div class="text-center">
+      <v-btn @click="search('요가 홈트')" class="ma-2" id="select-btn" outlined >요가</v-btn>
+      <v-btn @click="search('명상')" class="ma-2" id="select-btn" outlined >명상</v-btn>
+      <v-btn @click="search('스트레칭')" class="ma-2" id="select-btn" outlined >스트레칭</v-btn>
+      <v-btn @click="search('자세교정')" class="ma-2" id="select-btn" outlined >자세교정</v-btn>
+      </div>
+
       <v-app id="inspire">
       <div>
         <v-row>
@@ -378,7 +380,7 @@ export default {
   name: "videoList",
   data() {
     return {
-      defaultKey: "쾌걸근육맨",
+      defaultKey: "요가 홈트",
       defaultPart: "전신"
     };
   },
@@ -401,5 +403,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+#select-btn{
+  color: rgb(188, 218, 216);
+  font-size: 15px;
+  font-weight: bold;
+}
+*{
+  font-size: 13px;
+}
 </style>

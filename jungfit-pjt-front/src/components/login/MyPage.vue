@@ -142,11 +142,11 @@
                   <v-list-item v-for="(f, index) in followers" :key="index">
                     <template v-slot:default="{ active }">
                       <img
-                          src="https://img.icons8.com/emoji/344/princess.png"
-                          alt="프로필사진입니다."
-                          class="rounded-circle"
-                          width="40"
-                        />
+                        src="https://img.icons8.com/emoji/344/princess.png"
+                        alt="프로필사진입니다."
+                        class="rounded-circle"
+                        width="40"
+                      />
                       <v-list-item-content>
                         <v-list-item-title class="h4" v-text="f.myId"></v-list-item-title>
                       </v-list-item-content>

@@ -1,11 +1,18 @@
 <template>
-  <v-container> 
-    <v-card style="border-radius:5%; margin:100px 250px 100px 250px  " >
+  <v-container>
+    <v-card style="border-radius:5%; margin:100px 250px 100px 250px  ">
       <v-app id="inspire" justify-center>
         <v-form ref="form" v-model="valid" lazy-validation class="justify-center ma-16 pa-10">
-        <b style="font-size:40px">회원가입</b>
-        
-          <v-text-field class="mt-7" v-model="userId" :counter="15" :rules="idRules" label="아이디" required></v-text-field>
+          <b style="font-size:40px">회원가입</b>
+
+          <v-text-field
+            class="mt-7"
+            v-model="userId"
+            :counter="15"
+            :rules="idRules"
+            label="아이디"
+            required
+          ></v-text-field>
 
           <v-text-field
             type="password"
@@ -44,12 +51,12 @@
             label="약관에 동의하고 가입하시겠습니까?"
             required
           ></v-checkbox>
-          <div align="center" justify="space-around" >
-          <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">가입</v-btn>
+          <div align="center" justify="space-around">
+            <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">가입</v-btn>
 
-          <v-btn color="error" class="mr-4" @click="reset">폼 비우기</v-btn>
+            <v-btn color="error" class="mr-4" @click="reset">폼 비우기</v-btn>
 
-          <v-btn color="warning" :to="{name: 'home'}">돌아가기</v-btn>
+            <v-btn color="warning" :to="{name: 'home'}">돌아가기</v-btn>
           </div>
         </v-form>
       </v-app>
