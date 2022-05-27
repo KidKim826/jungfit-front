@@ -8,7 +8,7 @@
               <span>
                 <v-app-bar-nav-icon @click="drawer = true" id="appbar-item"></v-app-bar-nav-icon>
               </span>
-              <router-link :to="'/'" style="text-decoration:none" >
+              <router-link :to="'/'" style="text-decoration:none">
                 <span class="companyname text-uppercase ml-2" spellcheck="false">jungfit</span>
               </router-link>
               <!--여까지 완-->
@@ -65,7 +65,11 @@
       <v-layout column align-center>
         <v-flex class="mt-5">
           <v-avatar size="100">
-            <img  :src="`http://localhost:9999/jungfit/img/`+userInfo.fileName" alt="내프로필사진입니다." style="aspect-ratio: 1/1;"/>
+            <img
+              :src="`http://localhost:9999/jungfit/img/`+userInfo.fileName"
+              alt="내프로필사진입니다."
+              style="aspect-ratio: 1/1;"
+            />
           </v-avatar>
           <p class="white--text subheading mt-1" v-if="isLogin" style="font-size:15px">{{user}}</p>
         </v-flex>
@@ -91,24 +95,55 @@
             </v-list-item>
           </router-link>
         </v-list-item-group>
-        <v-btn v-if="this.adminLogin === false" class="ma-2" dark :to="'/admin/login'" style="text-decoration:none">
+        <v-btn
+          v-if="this.adminLogin === false"
+          class="ma-2"
+          dark
+          :to="'/admin/login'"
+          style="text-decoration:none"
+        >
           <v-icon dark>mdi-wrench</v-icon>
         </v-btn>
         <v-btn v-else-if="this.adminLogin === true" dark @click="LogOutManager">logout</v-btn>
+        <Translator @on-country-click="customEvent" :countries="arrayOfCountries" />
       </v-list>
     </v-navigation-drawer>
   </header>
 </template>
 
 <script>
+import { Translator } from "vue-google-translate";
 import { mapState } from "vuex";
 export default {
+  components: {
+    Translator
+  },
   data() {
     return {
       drawer: false,
       group: null,
       sync: true,
       islanguage: false,
+      arrayOfCountries: [
+        {
+          code: "en|ko",
+          title: "Korean",
+          flagIconUrl: "https://flagicons.lipis.dev/flags/4x3/ko.svg",
+          altText: "Korean language translation"
+        },
+        {
+          code: "en|en",
+          title: "English",
+          flagIconUrl: "https://flagicons.lipis.dev/flags/4x3/en.svg",
+          altText: "English language translation"
+        },
+        {
+          code: "en|ar",
+          title: "Arabic",
+          flagIconUrl: "https://flagicons.lipis.dev/flags/4x3/ar.svg",
+          altText: "Arabic language translation"
+        }
+      ]
     };
   },
   computed: {
@@ -122,9 +157,9 @@ export default {
       this.$store.dispatch("managerLogout");
     },
     changeLanguage() {
-      console.log("이것이 싱크"+this.sync)
-      
-      this.$store.dispatch("changeLanguage", this.sync)
+      console.log("이것이 싱크" + this.sync);
+
+      this.$store.dispatch("changeLanguage", this.sync);
     }
   }
 };
