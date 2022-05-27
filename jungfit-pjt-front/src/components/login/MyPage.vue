@@ -13,10 +13,10 @@
             style="aspect-ratio: 1/1;"
           />
 
-          <form method="post" action="/upload" enctype="multipart/form-data">
-            <input type="file" name="uploadfile">
-            <input type="submit">
-          </form>
+          <!-- <form enctype="multipart/form-data"> -->
+            <input type="file" name="uploadfile" @change="onInputImage()" ref="serveyImage" />
+            <button class="send-button" @click="onClickFormButton">등록</button>
+          <!-- </form> -->
 
 
           <h1 class="font-weight-regular">{{userInfo.userId}}</h1>
@@ -225,6 +225,9 @@ export default {
 
       this.$store.dispatch("goFollowerPage", data)
       this.$router.push("/user/member/"+data.myId)
+    },
+    picregist(){
+      this.$store.dispatch("updateProfile",uploadfile)
     }
   }
 };
